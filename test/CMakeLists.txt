@@ -27,6 +27,8 @@ set(MAIN_FILE main.cpp)
 set(accountDataValidate_EmailTest accountDataValidate_EmailTest.cpp)
 set(accountDataValidate_PeselTest accountDataValidate_PeselTest.cpp)
 set(accountDataValidate_PasswordTest accountDataValidate_PasswordTest.cpp)
+#set file accountDataValidate
+set(accountLoginRegistration_AccountRegistrationTEST accountLoginRegistration_AccountRegistrationTEST.cpp)
 #create file exe with module accountDataValidate
-add_executable(test ${MAIN_FILE} ${accountDataValidate_EmailTest} ${accountDataValidate_PeselTest} ${accountDataValidate_PasswordTest})
-target_link_libraries(test gtest accountDataValidate)
+add_executable(test ${MAIN_FILE} ${accountDataValidate_EmailTest} ${accountDataValidate_PeselTest} ${accountDataValidate_PasswordTest} ${accountLoginRegistration_AccountRegistrationTEST} )
+target_link_libraries(test gtest accountDataValidate accountLoginRegistration)

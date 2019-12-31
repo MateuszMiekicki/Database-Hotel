@@ -26,4 +26,4 @@ add_library(accountLoginRegistration STATIC
 
 set(MAIN_FILE src/main.cpp)
 add_executable(hotel ${MAIN_FILE})
-target_link_libraries(hotel accountDataValidate accountLoginRegistration)
+target_link_libraries(hotel accountLoginRegistration)
