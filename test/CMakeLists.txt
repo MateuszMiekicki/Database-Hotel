@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(test)
+SET(CMAKE_CXX_FLAGS "-std=c++17 -Wpedantic -Wall -Wextra")
+
 #gtest
 add_library(gtest STATIC IMPORTED) 
 set_target_properties(gtest PROPERTIES
@@ -7,14 +9,14 @@ set_target_properties(gtest PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/lib/include
 )
 
-#test add function
-add_library(add STATIC IMPORTED) 
-set_target_properties(add PROPERTIES
-  IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libadd.a
+#test accountDataValidate
+add_library(accountDataValidate STATIC IMPORTED) 
+set_target_properties(accountDataValidate PROPERTIES
+  IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/module/libaccountDataValidate.a
   INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}
 )
 
 set(MAIN_FILE main.cpp)
-set(ADD_TEST add_test.cpp)
-add_executable(test ${MAIN_FILE} ${ADD_TEST})
-target_link_libraries(test gtest add)
+set(accountDataValidate_TEST accountDataValidate_EmailTest.cpp)
+add_executable(test ${MAIN_FILE} ${accountDataValidate_TEST})
+target_link_libraries(test gtest accountDataValidate)
