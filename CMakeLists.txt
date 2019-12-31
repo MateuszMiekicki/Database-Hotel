@@ -9,7 +9,7 @@ endif()
 
 #flag for compilator
 SET(CMAKE_CXX_FLAGS "-std=c++17 -O3 -Wpedantic -Wall -Wextra -Wunused-variable -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wswitch-default -Wundef -Werror -Wno-unused -Wnon-virtual-dtor -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wuseless-cast -Wdouble-promotion")
-#account module
+#accountValidata module
 add_library(accountDataValidate STATIC
     src/accountDataValidate/EmailValidation.cpp
     src/accountDataValidate/PasswordValidation.cpp
@@ -18,7 +18,13 @@ add_library(accountDataValidate STATIC
     header/accountDataValidate/PasswordValidation.hpp
     header/accountDataValidate/PeselValidation.hpp
 )
+#account module
+add_library(accountRegistration STATIC
+    src/account/AccountRegistration.cpp
+    header/account/AccountRegistration.hpp
+)
+
 
 set(MAIN_FILE src/main.cpp)
 add_executable(hotel ${MAIN_FILE})
-target_link_libraries(hotel accountDataValidate)
+target_link_libraries(hotel accountDataValidate accountRegistration)
