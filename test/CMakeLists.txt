@@ -17,6 +17,7 @@ set_target_properties(accountDataValidate PROPERTIES
 )
 
 set(MAIN_FILE main.cpp)
-set(accountDataValidate_TEST accountDataValidate_EmailTest.cpp)
-add_executable(test ${MAIN_FILE} ${accountDataValidate_TEST})
+set(accountDataValidate_EmailTest accountDataValidate_EmailTest.cpp)
+set(accountDataValidate_PeselTest accountDataValidate_PeselTest.cpp)
+add_executable(test ${MAIN_FILE} ${accountDataValidate_PeselTest})
 target_link_libraries(test gtest accountDataValidate)
