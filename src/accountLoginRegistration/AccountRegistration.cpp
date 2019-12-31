@@ -1,7 +1,8 @@
-#include "../../header/account/AccountRegistration.hpp"
+#include "../../header/accountLoginRegistration/AccountRegistration.hpp"
 #include "../../header/accountDataValidate/PasswordValidation.hpp"
 #include "../../header/accountDataValidate/EmailValidation.hpp"
 #include "../../header/accountDataValidate/PeselValidation.hpp"
+#include <stdexcept>
 
 AccountRegistration::AccountRegistration(std::string _name, std::string _secondName, std::string _pesel, std::string _email, std::string _password, Permissions _permissions):
                                                                                                                                             name{_name},
@@ -11,6 +12,10 @@ AccountRegistration::AccountRegistration(std::string _name, std::string _secondN
                                                                                                                                             password{_password},
                                                                                                                                             permissions{_permissions}
 {
-    if(!(PeselValidation::validated(pesel) && EmailValidation::validated(email) && PasswordValidation::validated(password)))
-        throw;
+    if(!PeselValidation::validated(pesel))
+        throw std::invalid_argument("Invalid pesel.");
+    else if(!EmailValidation::validated(email))
+        throw std::invalid_argument("Invalid email.");
+    else if(!PasswordValidation::validated(password))
+        throw std::invalid_argument("Invalid password.");
 }

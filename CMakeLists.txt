@@ -19,12 +19,11 @@ add_library(accountDataValidate STATIC
     header/accountDataValidate/PeselValidation.hpp
 )
 #account module
-add_library(accountRegistration STATIC
-    src/account/AccountRegistration.cpp
-    header/account/AccountRegistration.hpp
+add_library(accountLoginRegistration STATIC
+    src/accountLoginRegistration/AccountRegistration.cpp
+    header/accountLoginRegistration/AccountRegistration.hpp
 )
-
 
 set(MAIN_FILE src/main.cpp)
 add_executable(hotel ${MAIN_FILE})
-target_link_libraries(hotel accountDataValidate accountRegistration)
+target_link_libraries(hotel accountDataValidate accountLoginRegistration)
