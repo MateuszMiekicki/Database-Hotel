@@ -34,7 +34,7 @@ TEST(AddAccount, addingUserWhenFileExistsWithIncorrectFormatting)
     }
 }
 
-TEST(AddAccount, findUser_v3)
+TEST(AddAccount, addingAnExistingAccount)
 {
     if (std::filesystem::exists("user.json"))
     {
