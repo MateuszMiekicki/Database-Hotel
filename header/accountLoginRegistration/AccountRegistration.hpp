@@ -1,21 +1,30 @@
 #ifndef _ACCOUNT_REGISTRATION_HPP_
 #define _ACCOUNT_REGISTRATION_HPP_
 #include <string>
+#include "../../lib/nlohmannjson/json.hpp"
 
 class AccountRegistration
 {
-    private:
-    enum class Permissions{root = -1, read = 0, write, readWrite};
+public:
+    enum class Permissions
+    {
+        root = -1,
+        read = 0,
+        write,
+        readWrite
+    };
+    explicit AccountRegistration(const std::string &, const std::string &, const std::string &, const std::string &, const std::string &, Permissions);
+    AccountRegistration(const AccountRegistration &);
+    AccountRegistration &operator=(const AccountRegistration &);
+    nlohmann::json userData = nullptr;
+private:
     std::string name{""};
     std::string secondName{""};
     std::string pesel{""};
     std::string email{""};
     std::string password{""};
     Permissions permissions = Permissions::read;
-    public:
-    explicit AccountRegistration(std::string _name, std::string _secondName, std::string _pesel, std::string email, std::string _password, Permissions _permissions);
-    AccountRegistration(const AccountRegistration& accountRegistration);
-    AccountRegistration& operator=(const AccountRegistration& accountRegistration);
+    AccountRegistration() = default;
 };
 
 #endif

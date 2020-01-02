@@ -5,7 +5,7 @@
 
 class PeselValidation
 {
-    public:
+public:
     static bool validated(std::string_view) noexcept;
 };
 
