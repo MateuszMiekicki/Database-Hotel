@@ -30,6 +30,7 @@ set(accountDataValidate_PasswordTest accountDataValidate_PasswordTest.cpp)
 #set file accountLoginRegistration
 set(accountLoginRegistration_AccountRegistrationTEST accountLoginRegistration_AccountRegistrationTEST.cpp)
 set(accountLoginRegistration_AddAccountTEST accountLoginRegistration_AddAccountTEST.cpp)
+set(accountLoginRegistration_AccountLoginTEST accountLoginRegistration_AccountLoginTEST.cpp)
 #create file exe with module accountDataValidate
-add_executable(test ${MAIN_FILE} ${accountDataValidate_EmailTest} ${accountDataValidate_PeselTest} ${accountDataValidate_PasswordTest} ${accountLoginRegistration_AccountRegistrationTEST} ${accountLoginRegistration_AddAccountTEST})
+add_executable(test ${MAIN_FILE} ${accountDataValidate_EmailTest} ${accountDataValidate_PeselTest} ${accountDataValidate_PasswordTest} ${accountLoginRegistration_AccountRegistrationTEST} ${accountLoginRegistration_AddAccountTEST} ${accountLoginRegistration_AccountLoginTEST})
 target_link_libraries(test gtest accountDataValidate accountLoginRegistration)

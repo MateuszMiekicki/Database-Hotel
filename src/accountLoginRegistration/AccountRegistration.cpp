@@ -2,14 +2,15 @@
 #include "../../header/accountDataValidate/PasswordValidation.hpp"
 #include "../../header/accountDataValidate/EmailValidation.hpp"
 #include "../../header/accountDataValidate/PeselValidation.hpp"
+#include "../../header/accountLoginRegistration/Permissions.hpp"
 #include <stdexcept>
 
-AccountRegistration::AccountRegistration(const std::string &_name, const std::string &_secondName, const std::string &_pesel, const std::string &_email, const std::string &_password, Permissions _permissions) : name{_name},
+AccountRegistration::AccountRegistration(const std::string &_name, const std::string &_secondName, const std::string &_pesel, const std::string &_email, const std::string &_password, Permissions _permission) : name{_name},
                                                                                                                                                                                                                    secondName{_secondName},
                                                                                                                                                                                                                    pesel{_pesel},
                                                                                                                                                                                                                    email(_email),
                                                                                                                                                                                                                    password{_password},
-                                                                                                                                                                                                                   permissions{_permissions}
+                                                                                                                                                                                                                   permission{_permission}
 {
     if (!PeselValidation::validated(pesel))
         throw std::invalid_argument("Invalid pesel.");
@@ -23,7 +24,7 @@ AccountRegistration::AccountRegistration(const std::string &_name, const std::st
         {"pesel", pesel},
         {"email", email},
         {"password", password},
-        {"permissions", permissions}};
+        {"permissions", permission}};
 }
 
 AccountRegistration::AccountRegistration(const AccountRegistration &accountRegistration) : name{accountRegistration.name},
@@ -31,7 +32,7 @@ AccountRegistration::AccountRegistration(const AccountRegistration &accountRegis
                                                                                            pesel{accountRegistration.pesel},
                                                                                            email{accountRegistration.email},
                                                                                            password{accountRegistration.password},
-                                                                                           permissions{accountRegistration.permissions}
+                                                                                           permission{accountRegistration.permission}
 {
     userData = {
         {"name", accountRegistration.name},
@@ -39,7 +40,7 @@ AccountRegistration::AccountRegistration(const AccountRegistration &accountRegis
         {"pesel", accountRegistration.pesel},
         {"email", accountRegistration.email},
         {"password", accountRegistration.password},
-        {"permissions", accountRegistration.permissions}};
+        {"permissions", accountRegistration.permission}};
 }
 
 AccountRegistration &AccountRegistration::operator=(const AccountRegistration &accountRegistration)
@@ -51,7 +52,7 @@ AccountRegistration &AccountRegistration::operator=(const AccountRegistration &a
         pesel = accountRegistration.pesel;
         email = accountRegistration.email;
         password = accountRegistration.password;
-        permissions = accountRegistration.permissions;
+        permission = accountRegistration.permission;
     }
     return *this;
 }

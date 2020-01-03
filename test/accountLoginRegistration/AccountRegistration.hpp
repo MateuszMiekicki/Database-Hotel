@@ -2,17 +2,11 @@
 #define _ACCOUNT_REGISTRATION_HPP_
 #include <string>
 #include "../../lib/nlohmannjson/json.hpp"
+#include "Permissions.hpp"
 
 class AccountRegistration
 {
 public:
-    enum class Permissions
-    {
-        root = -1,
-        read = 0,
-        write,
-        readWrite
-    };
     explicit AccountRegistration(const std::string &, const std::string &, const std::string &, const std::string &, const std::string &, Permissions);
     AccountRegistration(const AccountRegistration &);
     AccountRegistration &operator=(const AccountRegistration &);
@@ -23,7 +17,7 @@ private:
     std::string pesel{""};
     std::string email{""};
     std::string password{""};
-    Permissions permissions = Permissions::read;
+    Permissions permission = Permissions::null;
     AccountRegistration() = default;
 };
 
