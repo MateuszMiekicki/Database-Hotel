@@ -6,7 +6,7 @@
 
 AccountLogin::AccountLogin(const std::string &pesel, const std::string &passowrd) : PESEL{pesel},
                                                                                     PASSWORD{passowrd} {}
-bool AccountLogin::login() const noexcept
+bool AccountLogin::login() noexcept
 {
     if (std::filesystem::exists("user.json"))
     {
@@ -18,7 +18,16 @@ bool AccountLogin::login() const noexcept
             if (dataWithFile.find(PESEL) != dataWithFile.end())
             {
                 std::string passwordWtihFile(dataWithFile[PESEL]["password"]);
-                return (passwordWtihFile == PASSWORD) ? true : false;
+                if (passwordWtihFile == PASSWORD)
+                {
+                    persmission = static_cast<Permissions>(dataWithFile[PESEL]["permissions"]);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
             }
         }
         catch (const std::exception &e)
