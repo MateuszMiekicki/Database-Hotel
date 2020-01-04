@@ -11,12 +11,13 @@ public:
     AccountRegistration(const AccountRegistration &);
     AccountRegistration &operator=(const AccountRegistration &);
     nlohmann::json userData = nullptr;
+
 private:
-    std::string name{""};
-    std::string secondName{""};
-    std::string pesel{""};
-    std::string email{""};
-    std::string password{""};
+    std::string name;
+    std::string secondName;
+    std::string pesel;
+    std::string email;
+    std::string password;
     Permissions permission = Permissions::null;
     AccountRegistration() = default;
 };

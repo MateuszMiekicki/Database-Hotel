@@ -1,7 +1,7 @@
 #include "../../header/accountLoginRegistration/AccountRegistration.hpp"
-#include "../../header/accountDataValidate/PasswordValidation.hpp"
-#include "../../header/accountDataValidate/EmailValidation.hpp"
-#include "../../header/accountDataValidate/PeselValidation.hpp"
+#include "../../header/dataValidate/PasswordValidation.hpp"
+#include "../../header/dataValidate/EmailValidation.hpp"
+#include "../../header/dataValidate/PeselValidation.hpp"
 #include "../../header/accountLoginRegistration/Permissions.hpp"
 #include <stdexcept>
 

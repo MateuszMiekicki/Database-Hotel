@@ -1,6 +1,5 @@
 #ifndef _PASSWORD_VALIDATION_HPP_
 #define _PASSWORD_VALIDATION_HPP_
-
 #include <string_view>
 
 class PasswordValidation

@@ -6,13 +6,13 @@
 class AccountLogin
 {
 private:
-    const std::string PESEL{""};
-    const std::string PASSWORD{""};
+    const std::string PESEL;
+    const std::string PASSWORD;
+
 public:
     AccountLogin(const std::string &, const std::string &);
     Permissions persmission = Permissions::null;
     bool login() noexcept;
-
 };
 
 #endif

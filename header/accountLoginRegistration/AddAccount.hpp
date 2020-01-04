@@ -6,6 +6,7 @@ class AddAccount
 {
 private:
     const AccountRegistration account;
+
 public:
     explicit AddAccount(const AccountRegistration &);
     bool add() const noexcept;

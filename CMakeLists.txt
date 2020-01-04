@@ -11,13 +11,15 @@ endif()
 #-Wstrict-overflow=5 must off becouse new version gcc not support
 SET(CMAKE_CXX_FLAGS "-std=c++17 -O3 -Wpedantic -Wall -Wextra -Wunused-variable -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo -Wstrict-null-sentinel  -Wswitch-default -Wundef -Werror -Wno-unused -Wnon-virtual-dtor -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wuseless-cast -Wdouble-promotion")
 #accountValidata module
-add_library(accountDataValidate STATIC
-    src/accountDataValidate/EmailValidation.cpp
-    src/accountDataValidate/PasswordValidation.cpp
-    src/accountDataValidate/PeselValidation.cpp
-    header/accountDataValidate/EmailValidation.hpp
-    header/accountDataValidate/PasswordValidation.hpp
-    header/accountDataValidate/PeselValidation.hpp
+add_library(dataValidate STATIC
+    src/dataValidate/EmailValidation.cpp
+    src/dataValidate/PasswordValidation.cpp
+    src/dataValidate/PeselValidation.cpp
+    src/dataValidate/IDCardValidation.cpp
+    header/dataValidate/EmailValidation.hpp
+    header/dataValidate/PasswordValidation.hpp
+    header/dataValidate/PeselValidation.hpp
+    header/dataValidate/IDCardValidation.hpp
 )
 #account module
 add_library(accountLoginRegistration STATIC
@@ -29,9 +31,15 @@ add_library(accountLoginRegistration STATIC
     header/accountLoginRegistration/AccountLogin.hpp
     header/accountLoginRegistration/Permissions.hpp
 )
+#booking module
+add_library(booking STATIC
+    src/booking/Guest.cpp
+    header/booking/Guest.hpp
+)
+
 #nlohmann json lib, only header
 set(nlohmannJson lib/nlohmannjson/json.hpp)
 
 set(MAIN_FILE src/main.cpp)
 add_executable(hotel ${MAIN_FILE} ${nlohmannJson})
-target_link_libraries(hotel accountLoginRegistration)
+target_link_libraries(hotel )

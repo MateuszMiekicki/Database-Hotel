@@ -1,5 +1,5 @@
 #include "lib/include/gtest/gtest.h"
-#include "accountDataValidate/EmailValidation.hpp"
+#include "dataValidate/EmailValidation.hpp"
 #include <string>
 
 TEST(EmailValidation, passEmail)

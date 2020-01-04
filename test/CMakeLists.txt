@@ -9,10 +9,10 @@ set_target_properties(gtest PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/lib/include
 )
 
-#test accountDataValidate
-add_library(accountDataValidate STATIC IMPORTED)
-set_target_properties(accountDataValidate PROPERTIES
-  IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/module/libaccountDataValidate.a
+#test dataValidate
+add_library(dataValidate STATIC IMPORTED)
+set_target_properties(dataValidate PROPERTIES
+  IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/module/libdataValidate.a
   INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}
 )
 #test account
@@ -21,16 +21,16 @@ set_target_properties(accountLoginRegistration PROPERTIES
   IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/module/libaccountLoginRegistration.a
   INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}
 )
-
 set(MAIN_FILE main.cpp)
-#set file accountDataValidate
-set(accountDataValidate_EmailTest accountDataValidate_EmailTest.cpp)
-set(accountDataValidate_PeselTest accountDataValidate_PeselTest.cpp)
-set(accountDataValidate_PasswordTest accountDataValidate_PasswordTest.cpp)
+#set file dataValidate
+set(dataValidate_EmailTest dataValidate_EmailTest.cpp)
+set(dataValidate_PeselTest dataValidate_PeselTest.cpp)
+set(dataValidate_PasswordTest dataValidate_PasswordTest.cpp)
+set(dataValidate_IDCardValidation dataValidate_IDCardValidationTest.cpp)
 #set file accountLoginRegistration
 set(accountLoginRegistration_AccountRegistrationTEST accountLoginRegistration_AccountRegistrationTEST.cpp)
 set(accountLoginRegistration_AddAccountTEST accountLoginRegistration_AddAccountTEST.cpp)
 set(accountLoginRegistration_AccountLoginTEST accountLoginRegistration_AccountLoginTEST.cpp)
-#create file exe with module accountDataValidate
-add_executable(test ${MAIN_FILE} ${accountDataValidate_EmailTest} ${accountDataValidate_PeselTest} ${accountDataValidate_PasswordTest} ${accountLoginRegistration_AccountRegistrationTEST} ${accountLoginRegistration_AddAccountTEST} ${accountLoginRegistration_AccountLoginTEST})
-target_link_libraries(test gtest accountDataValidate accountLoginRegistration)
+#create file exe with module dataValidate
+add_executable(test ${MAIN_FILE} ${dataValidate_EmailTest} ${dataValidate_PeselTest} ${dataValidate_IDCardValidation} ${dataValidate_PasswordTest} ${accountLoginRegistration_AccountRegistrationTEST} ${accountLoginRegistration_AddAccountTEST} ${accountLoginRegistration_AccountLoginTEST})
+target_link_libraries(test gtest dataValidate accountLoginRegistration)
