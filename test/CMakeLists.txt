@@ -21,6 +21,12 @@ set_target_properties(accountLoginRegistration PROPERTIES
   IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/module/libaccountLoginRegistration.a
   INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}
 )
+#test booking
+add_library(booking STATIC IMPORTED)
+set_target_properties(booking PROPERTIES
+  IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/module/libbooking.a
+  INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}
+)
 set(MAIN_FILE main.cpp)
 #set file dataValidate
 set(dataValidate_EmailTest dataValidate_EmailTest.cpp)
@@ -31,6 +37,8 @@ set(dataValidate_IDCardValidation dataValidate_IDCardValidationTest.cpp)
 set(accountLoginRegistration_AccountRegistrationTEST accountLoginRegistration_AccountRegistrationTEST.cpp)
 set(accountLoginRegistration_AddAccountTEST accountLoginRegistration_AddAccountTEST.cpp)
 set(accountLoginRegistration_AccountLoginTEST accountLoginRegistration_AccountLoginTEST.cpp)
+#set file booking
+set(booking_GuestTEST booking_GuestTEST.cpp)
 #create file exe with module dataValidate
-add_executable(test ${MAIN_FILE} ${dataValidate_EmailTest} ${dataValidate_PeselTest} ${dataValidate_IDCardValidation} ${dataValidate_PasswordTest} ${accountLoginRegistration_AccountRegistrationTEST} ${accountLoginRegistration_AddAccountTEST} ${accountLoginRegistration_AccountLoginTEST})
-target_link_libraries(test gtest dataValidate accountLoginRegistration)
+add_executable(test ${MAIN_FILE} ${booking_GuestTEST} ${dataValidate_EmailTest} ${dataValidate_PeselTest} ${dataValidate_IDCardValidation} ${dataValidate_PasswordTest} ${accountLoginRegistration_AccountRegistrationTEST} ${accountLoginRegistration_AddAccountTEST} ${accountLoginRegistration_AccountLoginTEST})
+target_link_libraries(test gtest dataValidate accountLoginRegistration booking)
