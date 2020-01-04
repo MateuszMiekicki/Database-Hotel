@@ -4,17 +4,21 @@
 #include <utility>
 #include <optional>
 #include "../../lib/nlohmannjson/json.hpp"
+#include "../../lib/date/date.h"
 
 class Guest
 {
 private:
-    std::string name;
-    std::string secondName;
-    std::string pesel;
-    std::string numberIDCard;
+    const std::string name;
+    const std::string secondName;
+    const std::string pesel;
+    const std::string numberIDCard;
+    date::year_month_day sinceHired;
+    date::year_month_day untilWhenHired;
 
 public:
-    explicit Guest(const std::string &, const std::string &, const std::string &, const std::string &);
+    explicit Guest(const std::string &, const std::string &, const std::string &, const std::string &, const date::year_month_day &);
+    explicit Guest(const std::string &, const std::string &, const std::string &, const std::string &, const date::year_month_day &, const date::year_month_day &);
     std::optional<nlohmann::json> guestData() const;
 };
 

@@ -10,6 +10,7 @@ endif()
 #flag for compilator
 #-Wstrict-overflow=5 must off becouse new version gcc not support
 SET(CMAKE_CXX_FLAGS "-std=c++17 -O3 -Wpedantic -Wall -Wextra -Wunused-variable -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo -Wstrict-null-sentinel  -Wswitch-default -Wundef -Werror -Wno-unused -Wnon-virtual-dtor -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wuseless-cast -Wdouble-promotion")
+add_definitions(-Wno-deprecated)
 #accountValidata module
 add_library(dataValidate STATIC
     src/dataValidate/EmailValidation.cpp
@@ -39,7 +40,9 @@ add_library(booking STATIC
 
 #nlohmann json lib, only header
 set(nlohmannJson lib/nlohmannjson/json.hpp)
+#nlohmann date lib, only header
+set(date lib/date/date.h)
 
 set(MAIN_FILE src/main.cpp)
-add_executable(hotel ${MAIN_FILE} ${nlohmannJson})
+add_executable(hotel ${MAIN_FILE} ${nlohmannJson} ${date})
 target_link_libraries(hotel )
