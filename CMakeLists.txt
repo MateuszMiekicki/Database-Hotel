@@ -36,6 +36,8 @@ add_library(accountLoginRegistration STATIC
 add_library(booking STATIC
     src/booking/Guest.cpp
     header/booking/Guest.hpp
+    src/booking/Booking.cpp
+    header/booking/Booking.hpp
 )
 
 #nlohmann json lib, only header
