@@ -1,5 +1,5 @@
 #include "lib/include/gtest/gtest.h"
-#include "dataValidate/PasswordValidation.hpp"
+#include "../header/dataValidate/PasswordValidation.hpp"
 
 TEST(PasswordValidation, passPassword_8Char2Big_3Number)
 {

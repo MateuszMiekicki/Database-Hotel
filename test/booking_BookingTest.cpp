@@ -1,6 +1,6 @@
 #include "lib/include/gtest/gtest.h"
-#include "booking/Guest.hpp"
-#include "booking/Booking.hpp"
+#include "../header/booking/Guest.hpp"
+#include "../header/booking/Booking.hpp"
 #include <fstream>
 #include <iterator>
 #include <string>

@@ -1,5 +1,5 @@
 #include "lib/include/gtest/gtest.h"
-#include "dataValidate/IDCardValidation.hpp"
+#include "../header/dataValidate/IDCardValidation.hpp"
 #include <string>
 
 TEST(IDCardValidation, correctNumber)

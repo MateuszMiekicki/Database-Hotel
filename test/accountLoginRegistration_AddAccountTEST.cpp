@@ -1,6 +1,6 @@
 #include "lib/include/gtest/gtest.h"
-#include "accountLoginRegistration/AddAccount.hpp"
-#include "accountLoginRegistration/AccountRegistration.hpp"
+#include "../header/accountLoginRegistration/AddAccount.hpp"
+#include "../header/accountLoginRegistration/AccountRegistration.hpp"
 #include <string>
 #include <filesystem>
 #include <fstream>

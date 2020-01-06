@@ -10,6 +10,3 @@ os.system(cmd)
 
 copyAFile = "copy build\*.a test\module"
 os.system(copyAFile)
-
-copyHeader = "Xcopy /E /I header test"
-os.system(copyHeader)

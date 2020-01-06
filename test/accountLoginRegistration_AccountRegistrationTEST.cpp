@@ -1,5 +1,5 @@
 #include "lib/include/gtest/gtest.h"
-#include "accountLoginRegistration/AccountRegistration.hpp"
+#include "../header/accountLoginRegistration/AccountRegistration.hpp"
 #include <string>
 
 TEST(AccountRegistration, invalidPesel)

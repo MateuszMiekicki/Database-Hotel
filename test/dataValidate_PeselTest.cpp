@@ -1,5 +1,5 @@
 #include "lib/include/gtest/gtest.h"
-#include "dataValidate/PeselValidation.hpp"
+#include "../header/dataValidate/PeselValidation.hpp"
 
 TEST(PeselValidation, passPesel_men20_25)
 {

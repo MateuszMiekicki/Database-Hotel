@@ -1,5 +1,5 @@
 #include "lib/include/gtest/gtest.h"
-#include "booking/Guest.hpp"
+#include "../header/booking/Guest.hpp"
 #include <string>
 
 TEST(Guest, initializationGuestDataUntilWhenHired)
