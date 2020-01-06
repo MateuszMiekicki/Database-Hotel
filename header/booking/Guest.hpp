@@ -13,12 +13,10 @@ private:
     const std::string secondName;
     const std::string pesel;
     const std::string numberIDCard;
-    date::year_month_day sinceHired;
-    date::year_month_day untilWhenHired;
 
 public:
-    explicit Guest(const std::string &, const std::string &, const std::string &, const std::string &, const date::year_month_day &);
-    explicit Guest(const std::string &, const std::string &, const std::string &, const std::string &, const date::year_month_day &, const date::year_month_day &);
+    Guest() = delete;
+    explicit Guest(const std::string &, const std::string &, const std::string &, const std::string &);
     std::optional<nlohmann::json> guestData() const;
 };
 

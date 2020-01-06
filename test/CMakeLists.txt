@@ -39,6 +39,7 @@ set(accountLoginRegistration_AddAccountTEST accountLoginRegistration_AddAccountT
 set(accountLoginRegistration_AccountLoginTEST accountLoginRegistration_AccountLoginTEST.cpp)
 #set file booking
 set(booking_GuestTEST booking_GuestTEST.cpp)
+set(booking_BookingTEST booking_BookingTEST.cpp)
 #create file exe with module dataValidate
-add_executable(test ${MAIN_FILE} ${booking_GuestTEST} ${dataValidate_EmailTest} ${dataValidate_PeselTest} ${dataValidate_IDCardValidation} ${dataValidate_PasswordTest} ${accountLoginRegistration_AccountRegistrationTEST} ${accountLoginRegistration_AddAccountTEST} ${accountLoginRegistration_AccountLoginTEST})
+add_executable(test ${MAIN_FILE} ${booking_BookingTEST} ${booking_GuestTEST} ${dataValidate_EmailTest} ${dataValidate_PeselTest} ${dataValidate_IDCardValidation} ${dataValidate_PasswordTest} ${accountLoginRegistration_AccountRegistrationTEST} ${accountLoginRegistration_AddAccountTEST} ${accountLoginRegistration_AccountLoginTEST})
 target_link_libraries(test gtest dataValidate accountLoginRegistration booking)
