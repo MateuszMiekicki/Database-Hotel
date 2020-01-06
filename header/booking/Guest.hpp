@@ -18,6 +18,8 @@ public:
     Guest() = delete;
     explicit Guest(const std::string &, const std::string &, const std::string &, const std::string &);
     std::optional<nlohmann::json> guestData() const;
+    std::optional<nlohmann::json> getGuestDataWithFile() const;
+    static std::optional<nlohmann::json> getGuestDataWithFile(const std::string&);
 };
 
 #endif

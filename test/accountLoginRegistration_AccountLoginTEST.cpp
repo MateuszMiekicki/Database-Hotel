@@ -5,17 +5,17 @@
 TEST(AccountLogin, correctPeselAndPassword)
 {
     AccountLogin account(std::string("90090515836"), std::string("KotekALi123"));
-    ASSERT_TRUE(account.login());
+    EXPECT_EQ(account.login(), Permissions::read);
 }
 
 TEST(AccountLogin, validPeselIncorrectPassword)
 {
     AccountLogin account(std::string("90090515836"), std::string("Kotek"));
-    ASSERT_FALSE(account.login());
+    EXPECT_EQ(account.login(), std::nullopt);
 }
 
 TEST(AccountLogin, validPasswordIncorrectPesel)
 {
     AccountLogin account(std::string("90090515812"), std::string("KotekALi123"));
-    ASSERT_FALSE(account.login());
+    EXPECT_EQ(account.login(), std::nullopt);
 }

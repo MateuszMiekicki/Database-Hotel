@@ -2,11 +2,12 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <optional>
 #include "../../lib/nlohmannjson/json.hpp"
 
 AccountLogin::AccountLogin(const std::string &pesel, const std::string &passowrd) : PESEL{pesel},
                                                                                     PASSWORD{passowrd} {}
-bool AccountLogin::login() noexcept
+std::optional<Permissions> AccountLogin::login() noexcept
 {
     if (std::filesystem::exists("user.json"))
     {
@@ -20,14 +21,13 @@ bool AccountLogin::login() noexcept
                 std::string passwordWtihFile(dataWithFile[PESEL]["password"]);
                 if (passwordWtihFile == PASSWORD)
                 {
-                    persmission = static_cast<Permissions>(dataWithFile[PESEL]["permissions"]);
-                    return true;
+                    return static_cast<Permissions>(dataWithFile[PESEL]["permissions"]);
+
                 }
                 else
                 {
-                    return false;
+                    return std::nullopt;
                 }
-
             }
         }
         catch (const std::exception &e)
@@ -35,5 +35,5 @@ bool AccountLogin::login() noexcept
             std::cerr << e.what() << '\n';
         }
     }
-    return false;
+    return std::nullopt;
 }

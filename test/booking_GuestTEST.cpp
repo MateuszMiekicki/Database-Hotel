@@ -56,3 +56,16 @@ TEST(Guest, incorectSecondNameGuestData)
         {"numberIDCard", "ABS123456"}};
     EXPECT_EQ(std::nullopt, guest.guestData());
 }
+
+TEST(Guest, getDataGuest)
+{
+    Guest guest(std::string("Ania"), std::string("Kot"), std::string("92071314764"), std::string("ABS123456"));
+    nlohmann::json data = {
+        {"name", "Ania"},
+        {"numberIDCard", "ABS123456"},
+        {"pesel", "90090515836"},
+        {"secondName", "Kot"},
+        {"sinceHired", "2020-01-06"},
+        {"untilWhenHired", "2019-12-12"}};
+    EXPECT_EQ(guest.getGuestDataWithFile(), data);
+}

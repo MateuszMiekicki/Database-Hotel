@@ -2,6 +2,7 @@
 #define _ACCOUNT_LOGIN_HPP_
 #include "Permissions.hpp"
 #include <string>
+#include <optional>
 
 class AccountLogin
 {
@@ -12,7 +13,7 @@ private:
 public:
     AccountLogin(const std::string &, const std::string &);
     Permissions persmission = Permissions::null;
-    bool login() noexcept;
+    std::optional<Permissions> login() noexcept;
 };
 
 #endif

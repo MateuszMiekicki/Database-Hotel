@@ -5,6 +5,9 @@
 #include "../../lib/date/date.h"
 #include <optional>
 #include <sstream>
+#include <iostream>
+#include <fstream>
+#include <filesystem>
 
 Guest::Guest(const std::string &_name, const std::string &_secondName, const std::string &_pesel, const std::string &_numberIDCard) : name{_name},
                                                                                                                                       secondName{_secondName},
@@ -23,4 +26,66 @@ std::optional<nlohmann::json> Guest::guestData() const
         {"pesel", pesel},
         {"numberIDCard", temp}};
     return data;
+}
+
+std::optional<nlohmann::json> Guest::getGuestDataWithFile() const
+{
+    if (std::filesystem::exists("guest.json"))
+    {
+        std::ifstream fileJson("guest.json");
+        nlohmann::json dataWithFile = nullptr;
+        try
+        {
+            fileJson >> dataWithFile;
+            if (dataWithFile.find(numberIDCard) != dataWithFile.end())
+            {
+                nlohmann::json guest = dataWithFile[numberIDCard];
+                return guest;
+            }
+            else
+            {
+                return std::nullopt;
+            }
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << e.what() << '\n';
+            return std::nullopt;
+        }
+    }
+    else
+    {
+        return std::nullopt;
+    }
+}
+
+std::optional<nlohmann::json> Guest::getGuestDataWithFile(const std::string &_numberIDCard)
+{
+    if (std::filesystem::exists("guest.json"))
+    {
+        std::ifstream fileJson("guest.json");
+        nlohmann::json dataWithFile = nullptr;
+        try
+        {
+            fileJson >> dataWithFile;
+            if (dataWithFile.find(_numberIDCard) != dataWithFile.end())
+            {
+                nlohmann::json guest = dataWithFile[_numberIDCard];
+                return guest;
+            }
+            else
+            {
+                return std::nullopt;
+            }
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << e.what() << '\n';
+            return std::nullopt;
+        }
+    }
+    else
+    {
+        return std::nullopt;
+    }
 }
