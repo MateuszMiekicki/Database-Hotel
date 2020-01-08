@@ -8,37 +8,8 @@ if (${ENABLE_TESTS})
 endif()
 
 #flag for compilator
-#-Wstrict-overflow=5 must off becouse new version gcc not support -Wsign-conversion
-SET(CMAKE_CXX_FLAGS "-std=c++17 -O3 -Wpedantic -Wall -Wextra -Wunused-variable -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow  -Wsign-promo -Wstrict-null-sentinel  -Wswitch-default -Wundef -Werror -Wno-unused -Wnon-virtual-dtor -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wuseless-cast -Wdouble-promotion")
-add_definitions(-Wno-deprecated)
-#accountValidata module
-add_library(dataValidate STATIC
-    src/dataValidate/EmailValidation.cpp
-    src/dataValidate/PasswordValidation.cpp
-    src/dataValidate/PeselValidation.cpp
-    src/dataValidate/IDCardValidation.cpp
-    header/dataValidate/EmailValidation.hpp
-    header/dataValidate/PasswordValidation.hpp
-    header/dataValidate/PeselValidation.hpp
-    header/dataValidate/IDCardValidation.hpp
-)
-#account module
-add_library(accountLoginRegistration STATIC
-    src/accountLoginRegistration/AccountRegistration.cpp
-    header/accountLoginRegistration/AccountRegistration.hpp
-    src/accountLoginRegistration/AddAccount.cpp
-    header/accountLoginRegistration/AddAccount.hpp
-    src/accountLoginRegistration/AccountLogin.cpp
-    header/accountLoginRegistration/AccountLogin.hpp
-    header/accountLoginRegistration/Permissions.hpp
-)
-#booking module
-add_library(booking STATIC
-    src/booking/Guest.cpp
-    header/booking/Guest.hpp
-    src/booking/Booking.cpp
-    header/booking/Booking.hpp
-)
+SET(CMAKE_CXX_FLAGS "-std=c++17 -O3 -Wpedantic -Wall -Wextra -Wunused-variable -Wno-deprecated -Wcast-align -Wcast-qual -Wstrict-overflow=5 -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow  -Wsign-promo -Wstrict-null-sentinel  -Wswitch-default -Wundef -Werror -Wno-unused -Wnon-virtual-dtor -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wuseless-cast -Wdouble-promotion")
+add_definitions(-Wno-deprecated) #for date lib
 
 #nlohmann json lib, only header
 set(nlohmannJson lib/nlohmannjson/json.hpp)
@@ -47,4 +18,4 @@ set(date lib/date/date.h)
 
 set(MAIN_FILE src/main.cpp)
 add_executable(hotel ${MAIN_FILE} ${nlohmannJson} ${date})
-target_link_libraries(hotel accountLoginRegistration booking dataValidate)
+target_link_libraries(hotel)
