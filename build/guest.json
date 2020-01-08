@@ -1,18 +1,10 @@
 {
-    "ABA300000": {
-        "name": "Ania",
-        "numberIDCard": "ABA300000",
-        "pesel": "90090515836",
-        "secondName": "Kot",
-        "sinceHired": "2019-12-12",
-        "untilWhenHired": "2029-12-12"
-    },
     "ABS123456": {
-        "name": "Ania",
+        "name": "ala",
         "numberIDCard": "ABS123456",
         "pesel": "90090515836",
-        "secondName": "Kot",
-        "sinceHired": "2020-01-06",
-        "untilWhenHired": "2019-12-12"
+        "secondName": "kot",
+        "sinceHired": "0002-01-01",
+        "untilWhenHired": "0002-01-08"
     }
 }

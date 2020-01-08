@@ -62,6 +62,8 @@ Booking::Booking(const Guest &guest, const date::year_month_day &untilWhenHired)
     todayStream << today;
     std::stringstream untilWhenHiredStream;
     untilWhenHiredStream << untilWhenHired;
+    if (today > untilWhenHired)
+        throw std::invalid_argument("Invalid registration date.");
     nlohmann::json data = {
         {"name", guestData["name"]},
         {"secondName", guestData["secondName"]},
@@ -69,7 +71,7 @@ Booking::Booking(const Guest &guest, const date::year_month_day &untilWhenHired)
         {"numberIDCard", guestData["numberIDCard"]},
         {"sinceHired", todayStream.str()},
         {"untilWhenHired", untilWhenHiredStream.str()}};
-    if(!saveBooking(data))
+    if (!saveBooking(data))
         throw std::runtime_error("write failed.");
 }
 Booking::Booking(const Guest &guest, const date::year_month_day &sinceHired, const date::year_month_day &untilWhenHired)
@@ -82,6 +84,9 @@ Booking::Booking(const Guest &guest, const date::year_month_day &sinceHired, con
     sinceHiredStream << sinceHired;
     std::stringstream untilWhenHiredStream;
     untilWhenHiredStream << untilWhenHired;
+    auto today = date::floor<date::days>(std::chrono::system_clock::now());
+    if (sinceHired > untilWhenHired && today >= sinceHired)
+        throw std::invalid_argument("Invalid registration date.");
     nlohmann::json data = {
         {"name", guestData["name"]},
         {"secondName", guestData["secondName"]},
@@ -89,8 +94,38 @@ Booking::Booking(const Guest &guest, const date::year_month_day &sinceHired, con
         {"numberIDCard", guestData["numberIDCard"]},
         {"sinceHired", sinceHiredStream.str()},
         {"untilWhenHired", untilWhenHiredStream.str()}};
-    if(!saveBooking(data))
+    if (!saveBooking(data))
         throw std::runtime_error("write failed.");
 }
 Booking::Booking(const std::vector<Guest> &guests, const date::year_month_day &untilWhenHired) {}
 Booking::Booking(const std::vector<Guest> &guests, const date::year_month_day &sinceHired, const date::year_month_day &untilWhenHired) {}
+bool Booking::checkOut(const std::string &numberIDCard)
+{
+    if (std::filesystem::exists("guest.json"))
+    {
+        std::ifstream fileJson("guest.json");
+        nlohmann::json dataWithFile = nullptr;
+        try
+        {
+            fileJson >> dataWithFile;
+            if (dataWithFile.find(numberIDCard) != dataWithFile.end())
+            {
+                std::cout<<"Delete...\n";
+                dataWithFile.erase(numberIDCard);
+                std::ofstream fileOut("guest.json", std::ios::out | std::ios::trunc);
+                fileOut << dataWithFile.dump(4);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << e.what() << '\n';
+            return false;
+        }
+    }
+    return false;
+}

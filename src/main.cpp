@@ -33,7 +33,8 @@ int menuGuestLoginRegister()
 {
     std::cout << "1. Booking." << '\n';
     std::cout << "2. Check the information." << '\n';
-    std::cout << "3. Log out." << '\n';
+    std::cout << "3. Check out." << '\n';
+    std::cout << "4. Log out." << '\n';
     int choice{1};
     while (!std::cin.operator>>(choice))
     {
@@ -41,7 +42,6 @@ int menuGuestLoginRegister()
     }
     return choice;
 }
-
 } // namespace
 int main()
 {
@@ -52,26 +52,23 @@ int main()
         {
         case 1:
         {
-            while (true)
+            std::cout << "Enter the pesel\n";
+            std::string pesel;
+            std::cin >> pesel;
+            clearBufferIOStream();
+            std::cout << "Enter the passwor\n";
+            std::string password;
+            std::cin >> password;
+            clearBufferIOStream();
+            AccountLogin account(pesel, password);
+            if (auto loginStatus = account.login(); loginStatus)
             {
-                std::cout << "Enter the pesel\n";
-                std::string pesel;
-                std::cin >> pesel;
-                clearBufferIOStream();
-                std::cout << "Enter the passwor\n";
-                std::string password;
-                std::cin >> password;
-                clearBufferIOStream();
-                AccountLogin account(pesel, password);
-                if (auto loginStatus = account.login(); loginStatus)
-                {
-                    permissionsUser = loginStatus.value();
-                    goto exit_loop;
-                }
-                else
-                {
-                    std::cout << "Unfortunately, you gave the wrong data";
-                }
+                permissionsUser = loginStatus.value();
+                goto exit_loop;
+            }
+            else
+            {
+                std::cout << "Unfortunately, you gave the wrong data\n";
             }
         }
         break;
@@ -120,7 +117,7 @@ int main()
         }
         break;
         default:
-            std::cout << "Unfortunately, there is no such option.";
+            std::cout << "Unfortunately, there is no such option.\n";
             break;
         }
     }
@@ -150,7 +147,7 @@ exit_loop:;
             clearBufferIOStream();
             std::cout << "Enter the date of your arrival day-month-year(leaving the field blank will enter today's date): ";
             std::string date;
-            std::cin >> date;
+            getline(std::cin, date);
             std::cout << "Enter date of departure day-month-year: ";
             std::string dateDeparture;
             std::cin >> dateDeparture;
@@ -174,7 +171,6 @@ exit_loop:;
                     date::year yearDeparture((std::stoi(std::string(dateDeparture.begin() + 7, dateDeparture.begin() + 9))));
                     Booking booking(Guest(name, secondName, pesel, numberIDCard), date::year_month_day(yearArrival, monthArrival, dayArrival), date::year_month_day(yearDeparture, monthDeparture, dayDeparture));
                 }
-#pragma GCC diagnostic pop
             }
             catch (const std::exception &e)
             {
@@ -200,6 +196,16 @@ exit_loop:;
         }
         break;
         case 3:
+        {
+            std::cout << "Number ID card: ";
+            std::string numberIDCard;
+            std::cin >> numberIDCard;
+            if(Booking::checkOut(numberIDCard))
+                std::cout<<"Ok";
+
+        }
+        break;
+        case 4:
         {
             return 0;
         }
