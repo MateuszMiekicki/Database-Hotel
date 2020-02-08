@@ -2,6 +2,11 @@
 # Created by https://www.gitignore.io/api/cmake,visualstudio,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=cmake,visualstudio,visualstudiocode
 
+#folder
+build/
+gtest/
+.vscode/
+
 ### CMake ###
 CMakeLists.txt.user
 CMakeCache.txt
