@@ -42,3 +42,8 @@ TEST(ValidationPesel, incorectPeselWithLetter)
 {
 	EXPECT_FALSE(pesel.validated(std::string("900223554aa")));
 }
+
+TEST(ValidationPesel, incorectEmpty)
+{
+	EXPECT_FALSE(pesel.validated(std::string("")));
+}
