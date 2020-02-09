@@ -23,6 +23,8 @@ add_library(dataValidation STATIC
     header/validationDate/ValidationEmail.hpp
     src/validationDate/ValidationIDCard.cpp
     header/validationDate/ValidationIDCard.hpp
+    src/validationDate/ValidationPassword.cpp
+    header/validationDate/ValidationPassword.hpp
 )
 
 #nlohmann json lib, only header
