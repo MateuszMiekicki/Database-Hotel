@@ -8,7 +8,7 @@ bool ValidationIDCard::ValidationIDCard::validated(std::string_view IDCard) cons
 {
     std::string temp(IDCard);
     temp.erase(std::remove(temp.begin(), temp.end(), ' '), temp.end());
-    if (temp.size() > 9)
+    if (temp.size() !=9)
         return false;
     std::string letters(temp.begin(), temp.begin() + 3);
     std::string number(temp.begin() + 3, temp.end());

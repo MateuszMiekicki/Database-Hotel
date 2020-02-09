@@ -27,3 +27,18 @@ TEST(ValidationIDCard, incorrectTooLong)
 {
     EXPECT_FALSE(IDCard.validated(std::string("ABS2232345")));
 }
+
+TEST(ValidationIDCard, incorrectEmptyIDCard)
+{
+    EXPECT_FALSE(IDCard.validated(std::string("")));
+}
+
+TEST(ValidationIDCard, tWithSpaceOnBegin)
+{
+    EXPECT_TRUE(IDCard.validated(std::string(" ABS123456")));
+}
+
+TEST(ValidationIDCard, WithSpaceOnEnd)
+{
+    EXPECT_TRUE(IDCard.validated(std::string("ABS123456 ")));
+}
