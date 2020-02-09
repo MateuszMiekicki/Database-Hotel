@@ -20,7 +20,7 @@ set_target_properties(dataValidation PROPERTIES
 )
 
 set(MAIN_FILE main.cpp)
-set(VALIDATE_DATE ValidationPesel.cpp ValidationEmail.cpp)
+set(VALIDATE_DATE ValidationPesel.cpp ValidationEmail.cpp ValidationIDCard.cpp)
 
 add_executable(UnitTests ${MAIN_FILE} ${VALIDATE_DATE})
 add_dependencies(UnitTests googleTest)
