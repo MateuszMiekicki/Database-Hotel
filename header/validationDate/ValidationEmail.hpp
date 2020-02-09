@@ -2,13 +2,13 @@
 #define ValidationEmail_hpp
 #include "Validation.hpp"
 
-namespace ValidationEmail
+namespace Validation
 {
-class ValidationEmail : public Validation
+class ValidationEmail : public Validation::Validation
 {
     public:
     bool validated(std::string_view) const noexcept override;
 };
-} // namespace ValidationEmail
+} // namespace Validation
 
 #endif

@@ -1,7 +1,7 @@
 #include "../gtest/include/gtest/gtest.h"
 #include "../header/validationDate/ValidationPassword.hpp"
 
-ValidationPassword::ValidationPassword password;
+Validation::ValidationPassword password;
 
 TEST(ValidationPassword, passPassword8Char2Big_3Number)
 {

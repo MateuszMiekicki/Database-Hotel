@@ -3,7 +3,7 @@
 #include <string_view>
 #include <algorithm>
 
-bool ValidationPesel::ValidationPesel::validated(std::string_view pesel) const noexcept
+bool Validation::ValidationPesel::validated(std::string_view pesel) const noexcept
 {
     bool numbersOnly = [](const std::string_view &s) -> bool { return !s.empty() && (std::find_if(s.begin(),
                                                                                                   s.end(), [](unsigned char c) { return !std::isdigit(c); }) == s.end()); }(pesel);

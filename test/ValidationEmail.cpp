@@ -1,7 +1,7 @@
 #include "../gtest/include/gtest/gtest.h"
 #include "../header/validationDate/ValidationEmail.hpp"
 
-ValidationEmail::ValidationEmail email;
+Validation::ValidationEmail email;
 
 TEST(ValidationEmail, passEmail)
 {

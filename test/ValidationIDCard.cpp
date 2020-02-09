@@ -1,7 +1,7 @@
 #include "../gtest/include/gtest/gtest.h"
 #include "../header/validationDate/ValidationIDCard.hpp"
 
-ValidationIDCard::ValidationIDCard IDCard;
+Validation::ValidationIDCard IDCard;
 
 TEST(ValidationIDCard, correctNumber)
 {

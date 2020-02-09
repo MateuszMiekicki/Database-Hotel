@@ -4,7 +4,7 @@
 #include <cctype>
 #include <algorithm>
 
-bool ValidationIDCard::ValidationIDCard::validated(std::string_view IDCard) const noexcept
+bool Validation::ValidationIDCard::validated(std::string_view IDCard) const noexcept
 {
     std::string temp(IDCard);
     temp.erase(std::remove(temp.begin(), temp.end(), ' '), temp.end());

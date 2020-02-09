@@ -1,7 +1,7 @@
 #include "../gtest/include/gtest/gtest.h"
 #include "../header/validationDate/ValidationPesel.hpp"
 
-ValidationPesel::ValidationPesel pesel;
+Validation::ValidationPesel pesel;
 
 TEST(ValidationPesel, passPeselMen20_25Age)
 {

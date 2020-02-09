@@ -2,13 +2,13 @@
 #define ValidationPesel_hpp
 #include "Validation.hpp"
 
-namespace ValidationPesel
+namespace Validation
 {
-class ValidationPesel : public Validation
+class ValidationPesel : public Validation::Validation
 {
     public:
     bool validated(std::string_view) const noexcept override;
 };
-} // namespace ValidationPesel
+} // namespace Validation
 
 #endif

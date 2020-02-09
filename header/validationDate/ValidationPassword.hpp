@@ -2,13 +2,13 @@
 #define ValidationPassword_hpp
 #include "Validation.hpp"
 
-namespace ValidationPassword
+namespace Validation
 {
-class ValidationPassword : public Validation
+class ValidationPassword : public Validation::Validation
 {
     public:
     bool validated(std::string_view) const noexcept override;
 };
-} // namespace ValidationPassword
+} // namespace Validation
 
 #endif

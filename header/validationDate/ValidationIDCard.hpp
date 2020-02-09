@@ -2,13 +2,13 @@
 #define ValidationIDCard_hpp
 #include "Validation.hpp"
 
-namespace ValidationIDCard
+namespace Validation
 {
-class ValidationIDCard : public Validation
+class ValidationIDCard : public Validation::Validation
 {
     public:
     bool validated(std::string_view) const noexcept override;
 };
-} // namespace ValidationIDCard
+} // namespace Validation
 
 #endif
