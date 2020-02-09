@@ -10,14 +10,17 @@ if (${ENABLE_TESTS})
 endif()
 
 #flag for compilator
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_RELEASE} -std=c++17 -g3 -Og -Wpedantic -Wall -Wextra -Wunused-variable -Wno-deprecated -Wcast-align -Wcast-qual -Wstrict-overflow=5 -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow  -Wsign-promo -Wstrict-null-sentinel  -Wswitch-default -Wundef -Werror -Wno-unused -Wnon-virtual-dtor -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wuseless-cast -Wdouble-promotion")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_RELEASE} -std=c++17 -g3 -Og -Wpedantic -Wall -Wextra -Wunused-variable -Wno-deprecated -Wcast-align -Wcast-qual -Wstrict-overflow=5 -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow  -Wsign-promo -Wstrict-null-sentinel  -Wswitch-default -Wundef -Werror -Wno-unused -Wnon-virtual-dtor -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wuseless-cast -Wdouble-promotion")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -std=c++17 -Ofast -Wpedantic -Wall -Wextra -Wunused-variable -Wno-deprecated -Wcast-align -Wcast-qual -Wstrict-overflow=5 -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow  -Wsign-promo -Wstrict-null-sentinel  -Wswitch-default -Wundef -Werror -Wno-unused -Wnon-virtual-dtor -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wuseless-cast -Wdouble-promotion")
 
 #create lib with validate module
 add_library(dataValidation STATIC
+    header/validationDate/Validation.hpp #interface validation class
     src/validationDate/ValidationPesel.cpp
-    header/validationDate/Validation.hpp
     header/validationDate/ValidationPesel.hpp
+    src/validationDate/ValidationEmail.cpp
+    header/validationDate/ValidationEmail.hpp
 )
 
 #nlohmann json lib, only header

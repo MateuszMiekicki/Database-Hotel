@@ -5,23 +5,23 @@ SET(CMAKE_CXX_FLAGS "-std=c++17 -Wpedantic -Wall -Wextra")
 #gtest
 include(ExternalProject)
 set(EXTERNAL_INSTALL_LOCATION ${CMAKE_SOURCE_DIR}/gtest)
-ExternalProject_Add(googletest
-    GIT_REPOSITORY https://github.com/google/googletest
+ExternalProject_Add(googleTest
+    GIT_REPOSITORY https://github.com/google/googleTest
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
 )
 include_directories(${EXTERNAL_INSTALL_LOCATION}/include)   
 link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
 
-#create file exe with module dataValidate
-set(MAIN_FILE main.cpp)
 #file and lib with validate date content 
 add_library(dataValidation STATIC IMPORTED)
 set_target_properties(dataValidation PROPERTIES
   IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/../build/libdataValidation.a
   INTERFACE_INCLUDE_DIRECTORIES ${PROJECT_SOURCE_DIR}/../header/
 )
-set(VALIDATE_DATE validatePesel.cpp)
+
+set(MAIN_FILE main.cpp)
+set(VALIDATE_DATE ValidationPesel.cpp ValidationEmail.cpp)
 
 add_executable(UnitTests ${MAIN_FILE} ${VALIDATE_DATE})
-add_dependencies(UnitTests googletest)
+add_dependencies(UnitTests googleTest)
 target_link_libraries(UnitTests gtest gtest_main dataValidation)
