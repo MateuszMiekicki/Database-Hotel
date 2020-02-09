@@ -6,7 +6,7 @@
 build/
 gtest/
 .vscode/
-
+benchmark/benchamrk/
 ### CMake ###
 CMakeLists.txt.user
 CMakeCache.txt
