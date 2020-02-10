@@ -27,6 +27,12 @@ add_library(dataValidation STATIC
     header/validationDate/ValidationPassword.hpp
 )
 
+#create lib with guest module
+add_library(guest STATIC
+    header/guest/Guest.hpp
+    src/guest/Guest.cpp
+)
+
 #nlohmann json lib, only header
 set(nlohmannJson lib/nlohmannjson/json.hpp)
 

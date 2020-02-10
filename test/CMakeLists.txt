@@ -19,9 +19,17 @@ set_target_properties(dataValidation PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES ${PROJECT_SOURCE_DIR}/../header/
 )
 
+#file and lib with validate date content 
+add_library(guest STATIC IMPORTED)
+set_target_properties(guest PROPERTIES
+  IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/../build/libguest.a
+  INTERFACE_INCLUDE_DIRECTORIES ${PROJECT_SOURCE_DIR}/../header/
+)
+
 set(MAIN_FILE main.cpp)
 set(VALIDATE_DATE ValidationPesel.cpp ValidationEmail.cpp ValidationIDCard.cpp ValidationPassword.cpp)
+set(GUEST Guest.cpp)
 
-add_executable(UnitTests ${MAIN_FILE} ${VALIDATE_DATE})
+add_executable(UnitTests ${MAIN_FILE} ${VALIDATE_DATE} ${GUEST})
 add_dependencies(UnitTests googleTest)
-target_link_libraries(UnitTests gtest gtest_main dataValidation)
+target_link_libraries(UnitTests gtest gtest_main dataValidation guest)

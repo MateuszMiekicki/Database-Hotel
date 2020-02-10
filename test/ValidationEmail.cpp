@@ -8,6 +8,11 @@ TEST(ValidationEmail, passEmail)
 	EXPECT_TRUE(email.validated(std::string("ala@email.com")));
 }
 
+TEST(ValidationEmail, passEmailWithDotBetwenWords)
+{
+	EXPECT_TRUE(email.validated(std::string("jan.kowalski@gmail.com")));
+}
+
 TEST(ValidationEmail, invalidEmailNoDot)
 {
 	EXPECT_FALSE(email.validated(std::string("ala@emailcom")));
