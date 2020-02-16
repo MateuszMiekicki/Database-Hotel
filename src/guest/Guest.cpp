@@ -4,7 +4,14 @@
 #include <tuple>
 #include <optional>
 
+Guest::Guest::Guest() noexcept {}
+
 Guest::Guest::Guest(std::string_view name, std::string_view secondName, std::string_view email) noexcept
+{
+    set(name, secondName, email);
+}
+
+void Guest::Guest::set(std::string_view name, std::string_view secondName, std::string_view email) noexcept
 {
     Validation::ValidationEmail validation;
     if (name.size() != 0 && secondName.size() != 0 && validation.validated(email))
@@ -12,6 +19,7 @@ Guest::Guest::Guest(std::string_view name, std::string_view secondName, std::str
     else
         guestData = std::nullopt;
 }
+
 std::optional<std::tuple<std::string_view, std::string_view, std::string_view>> Guest::Guest::get() const noexcept
 {
     return guestData;

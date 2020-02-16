@@ -9,11 +9,13 @@ namespace Guest
 class Guest
 {
 public:
+    Guest() noexcept;
     explicit Guest(std::string_view, std::string_view, std::string_view) noexcept;
+    void set(std::string_view, std::string_view, std::string_view) noexcept;
     std::optional<std::tuple<std::string_view, std::string_view, std::string_view>> get() const noexcept;
 
 private:
-    std::optional<std::tuple<std::string_view, std::string_view, std::string_view>> guestData;
+    std::optional<std::tuple<std::string_view, std::string_view, std::string_view>> guestData = std::nullopt;
 };
 } // namespace Guest
 #endif
