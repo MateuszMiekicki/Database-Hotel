@@ -26,10 +26,18 @@ set_target_properties(guest PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES ${PROJECT_SOURCE_DIR}/../header/
 )
 
+#file and lib with staff content 
+add_library(staff STATIC IMPORTED)
+set_target_properties(staff PROPERTIES
+  IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/../build/libstaff.a
+  INTERFACE_INCLUDE_DIRECTORIES ${PROJECT_SOURCE_DIR}/../header/
+)
+
 set(MAIN_FILE main.cpp)
 set(VALIDATE_DATE ValidationPesel.cpp ValidationEmail.cpp ValidationIDCard.cpp ValidationPassword.cpp)
 set(GUEST Guest.cpp)
+set(STAFF Staff.cpp)
 
-add_executable(UnitTests ${MAIN_FILE} ${VALIDATE_DATE} ${GUEST})
+add_executable(UnitTests ${MAIN_FILE} ${VALIDATE_DATE} ${GUEST} ${STAFF})
 add_dependencies(UnitTests googleTest)
-target_link_libraries(UnitTests gtest gtest_main dataValidation guest)
+target_link_libraries(UnitTests gtest gtest_main dataValidation guest staff) 

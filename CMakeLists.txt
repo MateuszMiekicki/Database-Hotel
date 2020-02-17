@@ -32,6 +32,13 @@ add_library(guest STATIC
     src/guest/Guest.cpp
 )
 
+#create lib with guest module
+add_library(staff STATIC
+    header/staff/Staff.hpp
+    src/staff/Staff.cpp
+    header/staff/StaffPosition.hpp
+)
+
 #nlohmann json lib, only header
 set(nlohmannJson lib/nlohmannjson/json.hpp)
 
