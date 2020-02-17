@@ -9,7 +9,7 @@ namespace Guest
 class Guest
 {
 public:
-    Guest() noexcept;
+    Guest() = default;
     explicit Guest(std::string_view, std::string_view, std::string_view) noexcept;
     void set(std::string_view, std::string_view, std::string_view) noexcept;
     std::optional<std::tuple<std::string_view, std::string_view, std::string_view>> get() const noexcept;

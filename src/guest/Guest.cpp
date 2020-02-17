@@ -4,8 +4,6 @@
 #include <tuple>
 #include <optional>
 
-Guest::Guest::Guest() noexcept {}
-
 Guest::Guest::Guest(std::string_view name, std::string_view secondName, std::string_view email) noexcept
 {
     set(name, secondName, email);
