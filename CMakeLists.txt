@@ -36,7 +36,7 @@ add_library(guest STATIC
 add_library(staff STATIC
     header/staff/Staff.hpp
     src/staff/Staff.cpp
-    header/staff/StaffPosition.hpp
+    header/staff/Permissions.hpp
 )
 
 #nlohmann json lib, only header
