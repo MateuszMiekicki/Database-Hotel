@@ -8,24 +8,22 @@
 #include <optional>
 #include <tuple>
 
-Staff::Staff::Staff(std::string_view name, std::string_view secondName, std::string_view email, std::string_view password, std::string_view peselOrPersonalID, Permissions permissions) noexcept
+Staff::Staff::Staff(std::string_view name, std::string_view secondName, std::string_view peselOrPersonalID) noexcept
 {
-    set(name, secondName, email, password, peselOrPersonalID, permissions);
+    set(name, secondName, peselOrPersonalID);
 }
 
-std::optional<std::tuple<std::string, std::string, std::string, std::string, std::string, Staff::Permissions>> Staff::Staff::get() const noexcept
+std::optional<std::tuple<std::string, std::string, std::string>> Staff::Staff::get() const noexcept
 {
     return worker;
 }
 
-void Staff::Staff::set(std::string_view name, std::string_view secondName, std::string_view email, std::string_view password, std::string_view peselOrPersonalID, Permissions permissions) noexcept
+void Staff::Staff::set(std::string_view name, std::string_view secondName, std::string_view peselOrPersonalID) noexcept
 {
-    Validation::ValidationEmail validationEmail;
     Validation::ValidationIDCard validationIDCard;
-    Validation::ValidationPassword validationPassword;
     Validation::ValidationPesel validationPesel;
-    if (name.size() != 0 && secondName.size() != 0 && validationEmail.validated(email) && validationPassword.validated(password) && (validationIDCard.validated(peselOrPersonalID) || validationPesel.validated(peselOrPersonalID)))
-        worker = std::make_tuple(name, secondName, email, password, peselOrPersonalID, permissions);
+    if (name.size() != 0 && secondName.size() != 0 && (validationIDCard.validated(peselOrPersonalID) || validationPesel.validated(peselOrPersonalID)))
+        worker = std::make_tuple(name, secondName, peselOrPersonalID);
     else
         worker = std::nullopt;
 }
