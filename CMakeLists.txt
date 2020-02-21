@@ -39,6 +39,12 @@ add_library(staff STATIC
     header/staff/Permissions.hpp
 )
 
+add_library(database STATIC
+    header/database/Database.hpp
+    header/database/JSON.hpp
+)
+
+
 #nlohmann json lib, only header
 set(nlohmannJson lib/nlohmannjson/json.hpp)
 
