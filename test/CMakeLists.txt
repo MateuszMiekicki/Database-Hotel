@@ -40,10 +40,13 @@ set_target_properties(database PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES ${PROJECT_SOURCE_DIR}/../header/
 )
 
+set(UTILITY_FOR_UNIT_TEST Utility/FileManagement.cpp Utility/FileManagement.hpp)
 set(MAIN_FILE main.cpp)
 set(VALIDATE_DATE ValidationPesel.cpp ValidationEmail.cpp ValidationIDCard.cpp ValidationPassword.cpp)
 set(GUEST Guest.cpp)
 set(STAFF Staff.cpp)
-add_executable(UnitTests ${MAIN_FILE} ${VALIDATE_DATE} ${GUEST} ${STAFF})
+set(DATABASE JSON.cpp)
+
+add_executable(UnitTests ${UTILITY_FOR_UNIT_TEST} ${MAIN_FILE} ${VALIDATE_DATE} ${GUEST} ${STAFF} ${DATABASE})
 add_dependencies(UnitTests googleTest)
 target_link_libraries(UnitTests gtest gtest_main dataValidation guest staff database) 

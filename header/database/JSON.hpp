@@ -1,16 +1,25 @@
 #ifndef JSON_hpp
 #define JSON_hpp
 #include "Database.hpp"
+#include "../../lib/nlohmannjson/json.hpp"
+#include <string_view>
+#include <fstream>
+#include <utility>
 
 namespace Database
 {
 class JSON : public Database
 {
 public:
-    virtual bool connect() noexcept override;
+    JSON() = default;
+    explicit JSON(std::string_view);
+    virtual bool connect(std::string_view) noexcept override;
     virtual bool disconnect() noexcept override;
-    virtual bool request() noexcept override;
-    ~JSON() {}
+    nlohmann::json getDataWithDB() noexcept;
+    ~JSON();
+
+private:
+    std::pair<std::fstream, nlohmann::json> session;
 };
 } // namespace Database
 

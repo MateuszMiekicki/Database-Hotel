@@ -13,6 +13,9 @@ endif()
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_RELEASE} -std=c++17 -g3 -Og -Wpedantic -Wall -Wextra -Wunused-variable -Wno-deprecated -Wcast-align -Wcast-qual -Wstrict-overflow=5 -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow  -Wsign-promo -Wstrict-null-sentinel  -Wswitch-default -Wundef -Werror -Wno-unused -Wnon-virtual-dtor -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wuseless-cast -Wdouble-promotion")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -std=c++17 -Ofast -Wpedantic -Wall -Wextra -Wunused-variable -Wno-deprecated -Wcast-align -Wcast-qual -Wstrict-overflow=5 -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow  -Wsign-promo -Wstrict-null-sentinel  -Wswitch-default -Wundef -Werror -Wno-unused -Wnon-virtual-dtor -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wuseless-cast -Wdouble-promotion")
 
+#nlohmann json lib, only header
+set(nlohmannJson lib/nlohmannjson/json.hpp)
+
 #create lib with validate module
 add_library(dataValidation STATIC
     header/validationDate/Validation.hpp #interface validation class
@@ -41,12 +44,10 @@ add_library(staff STATIC
 
 add_library(database STATIC
     header/database/Database.hpp
+    src/database/JSON.cpp
     header/database/JSON.hpp
+    ${nlohmannJson}
 )
-
-
-#nlohmann json lib, only header
-set(nlohmannJson lib/nlohmannjson/json.hpp)
 
 set(MAIN_FILE src/main.cpp)
 add_executable(hotel ${MAIN_FILE})

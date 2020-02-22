@@ -6,10 +6,9 @@ namespace Database
 class Database
 {
 public:
-    virtual bool connect() noexcept = 0;
+    virtual bool connect(std::string_view) noexcept = 0;
     virtual bool disconnect() noexcept = 0;
-    virtual bool request() noexcept = 0;
-    ~Database() {}
+    virtual ~Database(){};
 };
 } // namespace Database
 
