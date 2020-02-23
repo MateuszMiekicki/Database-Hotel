@@ -5,6 +5,7 @@
 #include <string_view>
 #include <fstream>
 #include <utility>
+#include <optional>
 
 namespace Database
 {
@@ -15,7 +16,7 @@ public:
     explicit JSON(std::string_view);
     virtual bool connect(std::string_view) noexcept override;
     virtual bool disconnect() noexcept override;
-    nlohmann::json getDataWithDB() noexcept;
+    std::optional<nlohmann::json> getDataWithDB() noexcept;
     ~JSON();
 
 private:

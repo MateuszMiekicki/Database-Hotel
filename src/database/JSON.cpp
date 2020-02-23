@@ -18,29 +18,27 @@ bool Database::JSON::connect(std::string_view addres) noexcept
     {
         session.first.open(std::string(addres), std::fstream::in | std::fstream::out | std::fstream::app);
         if (session.first.is_open())
-        {
-            session.first >> session.second;
             return true;
-        }
         else
             return false;
-    }
-    catch (const std::exception &e)
-    {
-        return false;
-    }
-}
-
-std::optional<nolhmalnn::json> Database::JSON::getDataWithDB() noexcept
-{
-    try
-    {
     }
     catch (...)
     {
         return false;
     }
-    return true;
+}
+
+std::optional<nlohmann::json> Database::JSON::getDataWithDB() noexcept
+{
+    try
+    {
+        session.first >> session.second;
+    }
+    catch (...)
+    {
+        return std::nullopt;
+    }
+    return session.second;
 }
 
 bool Database::JSON::disconnect() noexcept

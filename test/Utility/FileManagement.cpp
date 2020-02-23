@@ -3,7 +3,7 @@
 #include <fstream>
 #include "FileManagement.hpp"
 
-bool FileManagement::creteFile(std::string fileNameWithExtension, std::string conntent, std::filesystem::path path) const noexcept
+bool FileManagement::creteFile(std::string fileNameWithExtension, std::string conntent, std::filesystem::path path) noexcept
 {
     try
     {
@@ -19,6 +19,8 @@ bool FileManagement::creteFile(std::string fileNameWithExtension, std::string co
     {
         return false;
     }
+    pathForCretefile.first = path;
+    pathForCretefile.second = fileNameWithExtension;
     return true;
 }
 
@@ -38,4 +40,9 @@ bool FileManagement::deleteFile(std::string fileNameWithExtension, std::filesyst
     {
         return false;
     }
+}
+
+FileManagement::~FileManagement()
+{
+    deleteFile(pathForCretefile.second, pathForCretefile.first);
 }
