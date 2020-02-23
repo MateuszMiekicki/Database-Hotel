@@ -34,8 +34,23 @@ TEST(JSON, getDataWithDBSimpleTwoObject)
 TEST(JSON, disconeted)
 {
     FileManagement file;
-    file.creteFile("test.json");
+    file.creteFile("test.json", "{\"one\":1,\"two\":2}");
     Database::JSON json("test.json");
-    json.disconnect();
-    ASSERT_EQ(json.getDataWithDB(), std::nullopt);
+    ASSERT_TRUE(json.disconnect());
+}
+
+TEST(JSON, emptyFileWithDBContent)
+{
+    FileManagement file;
+    file.creteFile("test.json", "");
+    Database::JSON json("test.json");
+    nlohmann::json temp;
+    temp = {{"one", 1}, {"two", 2}};
+    EXPECT_EQ(json.getDataWithDB(), std::nullopt);
+}
+
+TEST(JSON, noFileDB)
+{
+    Database::JSON json;
+    EXPECT_FALSE(json.connect("test.json"));
 }

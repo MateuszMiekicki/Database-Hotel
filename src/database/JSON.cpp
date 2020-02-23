@@ -5,6 +5,7 @@
 #include <string_view>
 #include <stdexcept>
 #include <optional>
+#include <filesystem>
 
 Database::JSON::JSON(std::string_view addres)
 {
@@ -16,9 +17,8 @@ bool Database::JSON::connect(std::string_view addres) noexcept
 {
     try
     {
-        session.first.open(std::string(addres), std::fstream::in | std::fstream::out | std::fstream::app);
-        if (session.first.is_open())
-            return true;
+        if (std::filesystem::exists(addres))
+            session.first.open(std::string(addres), std::fstream::in | std::fstream::out | std::fstream::app);
         else
             return false;
     }
@@ -26,6 +26,7 @@ bool Database::JSON::connect(std::string_view addres) noexcept
     {
         return false;
     }
+    return true;
 }
 
 std::optional<nlohmann::json> Database::JSON::getDataWithDB() noexcept
@@ -45,7 +46,7 @@ bool Database::JSON::disconnect() noexcept
 {
     session.first.close();
     session.second.clear();
-    return true;
+    return (session.first.is_open() == 0 && session.second.size() == 0) ? true : false;
 }
 
 Database::JSON::~JSON()
