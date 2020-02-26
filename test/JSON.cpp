@@ -10,6 +10,25 @@ TEST(JSON, successConnect)
     ASSERT_TRUE(json.connect("test.json"));
 }
 
+TEST(JSON, successConnectWithConstructor)
+{
+    FileManagement file;
+    file.creteFile("test.json");
+    ASSERT_NO_THROW(Database::JSON json("test.json"));
+}
+
+TEST(JSON, wrongConnectWithConstructor)
+{
+    try
+    {
+        Database::JSON json("test.json");
+    }
+    catch (const std::invalid_argument &e)
+    {
+        EXPECT_EQ(e.what(), std::string("JSON ctor: Bad addres database."));
+    }
+}
+
 TEST(JSON, getDataWithDBEmptyDB)
 {
     FileManagement file;

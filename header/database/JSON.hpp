@@ -16,6 +16,7 @@ public:
     explicit JSON(std::string_view);
     virtual bool connect(std::string_view) noexcept override;
     virtual bool disconnect() noexcept override;
+    bool addNewGuest() const noexcept;
     std::optional<nlohmann::json> getDataWithDB() noexcept;
     ~JSON();
 
