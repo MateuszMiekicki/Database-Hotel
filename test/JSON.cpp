@@ -68,8 +68,17 @@ TEST(JSON, emptyFileWithDBContent)
     EXPECT_EQ(json.getDataWithDB(), std::nullopt);
 }
 
-TEST(JSON, noFileDB)
+TEST(JSON, findInDBFile)
 {
-    Database::JSON json;
-    EXPECT_FALSE(json.connect("test.json"));
+    FileManagement file;
+    file.creteFile("test.json", "{\"test1\": [\"name\",10,true,\"poland\"],\"test2\": [\"name\",10,true,\"poland\"],\"test3\": [\"name\",10,true,\"poland\"],\"test4\": [\"name\",10,true,\"poland\"]}");
+    Database::JSON json("test.json");
+    json.getDataWithDB();
+    auto returnValue = json.find("test2");
+    nlohmann::json fileToCompare;
+    fileToCompare["test2"].push_back("name");
+    fileToCompare["test2"].push_back(10);
+    fileToCompare["test2"].push_back(true);
+    fileToCompare["test2"].push_back("poland");
+    ASSERT_EQ(returnValue.value(), fileToCompare.at("test2"));
 }

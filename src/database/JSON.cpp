@@ -49,6 +49,15 @@ bool Database::JSON::disconnect() noexcept
     return (session.first.is_open() == 0 && session.second.size() == 0) ? true : false;
 }
 
+std::optional<nlohmann::json> Database::JSON::find(const std::string &key) const noexcept
+{
+    if (session.second.find(key) != session.second.end())
+    {
+        return session.second.at(key);
+    }
+    return std::nullopt;
+}
+
 Database::JSON::~JSON()
 {
     disconnect();

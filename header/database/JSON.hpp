@@ -18,6 +18,7 @@ public:
     virtual bool disconnect() noexcept override;
     bool addNewGuest() const noexcept;
     std::optional<nlohmann::json> getDataWithDB() noexcept;
+    std::optional<nlohmann::json> find(const std::string &) const noexcept;
     ~JSON();
 
 private:
