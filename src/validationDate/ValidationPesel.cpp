@@ -3,10 +3,16 @@
 #include <string_view>
 #include <algorithm>
 
-bool Validation::ValidationPesel::validated(std::string_view pesel) const noexcept
+bool Validation::ValidationPesel::validated(std::string_view pesel) const 
+                                                                    noexcept
 {
-    bool numbersOnly = [](const std::string_view &s) -> bool { return !s.empty() && (std::find_if(s.begin(),
-                                                                                                  s.end(), [](unsigned char c) { return !std::isdigit(c); }) == s.end()); }(pesel);
+    bool numbersOnly = [](const std::string_view &s) -> bool 
+                        { return !s.empty() && 
+                                (std::find_if(s.begin(),
+                                            s.end(), 
+                                            [](unsigned char c) 
+                                            {return !std::isdigit(c);}) == s.end()); 
+                                            }(pesel);
     if (pesel.size() != 11 || !numbersOnly)
         return false;
     std::string controlNumber(pesel.begin() + 10, pesel.begin() + 11);

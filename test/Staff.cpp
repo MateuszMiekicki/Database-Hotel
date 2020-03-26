@@ -12,7 +12,9 @@ TEST(Staff, setMethod_correctDataEmployeeWithPesel)
     Staff::Staff worker;
     worker.set(name, seconddName, pesel);
     auto temp = worker.get();
-    std::tuple<std::string, std::string, std::string> workerData(name, seconddName, pesel);
+    std::tuple<std::string, 
+                std::string, 
+                std::string> workerData(name, seconddName, pesel);
     ASSERT_EQ(temp, workerData);
 }
 
@@ -24,7 +26,9 @@ TEST(Staff, setMethod_correctDataEmployeeWithIDNumber)
     Staff::Staff worker;
     worker.set(name, seconddName, IDNumber);
     auto temp = worker.get();
-    std::tuple<std::string, std::string, std::string> workerData(name, seconddName, IDNumber);
+    std::tuple<std::string, 
+                std::string, 
+                std::string> workerData(name, seconddName, IDNumber);
     ASSERT_EQ(temp, workerData);
 }
 
@@ -36,7 +40,9 @@ TEST(Staff, setMethodEmptyName)
     Staff::Staff worker;
     worker.set(name, seconddName, IDNumber);
     auto temp = worker.get();
-    std::tuple<std::string, std::string, std::string> workerData(name, seconddName, IDNumber);
+    std::tuple<std::string, 
+                std::string, 
+                std::string> workerData(name, seconddName, IDNumber);
     EXPECT_EQ(temp, std::nullopt);
 }
 
@@ -48,7 +54,9 @@ TEST(Staff, setMethodEmptySecondName)
     Staff::Staff worker;
     worker.set(name, seconddName, IDNumber);
     auto temp = worker.get();
-    std::tuple<std::string, std::string, std::string> workerData(name, seconddName, IDNumber);
+    std::tuple<std::string, 
+                std::string, 
+                std::string> workerData(name, seconddName, IDNumber);
     EXPECT_EQ(temp, std::nullopt);
 }
 
@@ -60,7 +68,9 @@ TEST(Staff, setMethodWrongIDNumber)
     Staff::Staff worker;
     worker.set(name, seconddName, IDNumber);
     auto temp = worker.get();
-    std::tuple<std::string, std::string, std::string> workerData(name, seconddName, IDNumber);
+    std::tuple<std::string, 
+                std::string, 
+                std::string> workerData(name, seconddName, IDNumber);
     EXPECT_EQ(temp, std::nullopt);
 }
 
@@ -72,7 +82,9 @@ TEST(Staff, setMethodEmptyIDNumber)
     Staff::Staff worker;
     worker.set(name, seconddName, IDNumber);
     auto temp = worker.get();
-    std::tuple<std::string, std::string, std::string> workerData(name, seconddName, IDNumber);
+    std::tuple<std::string, 
+                std::string, 
+                std::string> workerData(name, seconddName, IDNumber);
     EXPECT_EQ(temp, std::nullopt);
 }
 
@@ -84,7 +96,9 @@ TEST(Staff, setMethodWrongPesel)
     Staff::Staff worker;
     worker.set(name, seconddName, pesel);
     auto temp = worker.get();
-    std::tuple<std::string, std::string, std::string> workerData(name, seconddName, pesel);
+    std::tuple<std::string, 
+                std::string, 
+                std::string> workerData(name, seconddName, pesel);
     EXPECT_EQ(temp, std::nullopt);
 }
 
@@ -96,6 +110,8 @@ TEST(Staff, setMethodEmptyPesel)
     Staff::Staff worker;
     worker.set(name, seconddName, pesel);
     auto temp = worker.get();
-    std::tuple<std::string, std::string, std::string> workerData(name, seconddName, pesel);
+    std::tuple<std::string, 
+                std::string, 
+                std::string> workerData(name, seconddName, pesel);
     EXPECT_EQ(temp, std::nullopt);
 }
