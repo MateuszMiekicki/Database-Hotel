@@ -1,4 +1,4 @@
-#include "../gtest/include/gtest/gtest.h"
+#include "gtest/include/gtest/gtest.h"
 #include "../header/database/JSON.hpp"
 #include "Utility/FileManagement.hpp"
 
