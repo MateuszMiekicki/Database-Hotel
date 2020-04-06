@@ -13,5 +13,5 @@ ExternalProject_Add(googletest
 )
 
 if(JSON_FIND) 
-    add_subdirectory(JSON)
+    add_subdirectory(JSON_FIND)
 endif()

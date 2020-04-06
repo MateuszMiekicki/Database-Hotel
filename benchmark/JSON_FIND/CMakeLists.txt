@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(BenchmarkJSON)
+project(BenchmarkJSON_FIND)
 SET(CMAKE_CXX_FLAGS "-std=c++17 -O3 -Wpedantic -Wall -Wextra")
 set(CMAKE_BUILD_TYPE "Release")
 include_directories(${PROJECT_SOURCE_DIR}/../build/install/include)   
