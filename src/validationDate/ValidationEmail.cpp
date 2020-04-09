@@ -1,5 +1,6 @@
-#include "../../header/validationDate/ValidationEmail.hpp"
+#include <string_view>
 #include <regex>
+#include "../../header/validationDate/ValidationEmail.hpp"
 
 bool Validation::ValidationEmail::validated(std::string_view email) const 
                                                                     noexcept

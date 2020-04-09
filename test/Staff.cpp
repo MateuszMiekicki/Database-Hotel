@@ -1,8 +1,9 @@
-#include "gtest/include/gtest/gtest.h"
-#include "../header/staff/Staff.hpp"
 #include <string>
 #include <optional>
 #include <tuple>
+#include "gtest/include/gtest/gtest.h"
+#include "../header/staff/Staff.hpp"
+
 
 TEST(Staff, setMethod_correctDataEmployeeWithPesel)
 {

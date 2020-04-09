@@ -1,6 +1,5 @@
 #ifndef interfaceValidation_hpp
 #define interfaceValidation_hpp
-#include <string_view>
 
 namespace Validation
 {

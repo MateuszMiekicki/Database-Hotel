@@ -1,5 +1,6 @@
 #ifndef Permissions_hpp
 #define Permissions_hpp
+
 namespace Staff
 {
 enum class Permissions

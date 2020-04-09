@@ -1,5 +1,6 @@
-#include "../../header/validationDate/ValidationPassword.hpp"
 #include <regex>
+#include <string_view>
+#include "../../header/validationDate/ValidationPassword.hpp"
 
 bool Validation::ValidationPassword::validated(std::string_view password) const 
                                                                         noexcept

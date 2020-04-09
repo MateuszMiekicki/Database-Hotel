@@ -1,12 +1,12 @@
+#include <string_view>
+#include <optional>
+#include <tuple>
 #include "../../header/staff/Staff.hpp"
 #include "../../header/staff/Permissions.hpp"
 #include "../../header/validationDate/ValidationEmail.hpp"
 #include "../../header/validationDate/ValidationIDCard.hpp"
 #include "../../header/validationDate/ValidationPassword.hpp"
 #include "../../header/validationDate/ValidationPesel.hpp"
-#include <string_view>
-#include <optional>
-#include <tuple>
 
 Staff::Staff::Staff(std::string_view name, 
                     std::string_view secondName, 

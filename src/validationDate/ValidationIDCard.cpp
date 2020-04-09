@@ -1,8 +1,8 @@
-#include "../../header/validationDate/ValidationIDCard.hpp"
 #include <string_view>
 #include <string>
 #include <cctype>
 #include <algorithm>
+#include "../../header/validationDate/ValidationIDCard.hpp"
 
 bool Validation::ValidationIDCard::validated(std::string_view IDCard) const 
                                                                     noexcept

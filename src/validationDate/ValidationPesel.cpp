@@ -1,7 +1,7 @@
-#include "../../header/validationDate/ValidationPesel.hpp"
 #include <string>
 #include <string_view>
 #include <algorithm>
+#include "../../header/validationDate/ValidationPesel.hpp"
 
 bool Validation::ValidationPesel::validated(std::string_view pesel) const 
                                                                     noexcept
