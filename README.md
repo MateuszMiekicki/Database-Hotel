@@ -9,7 +9,7 @@ Use the CMake building system
 
 ```bash
 mkdir build && cd build
-cmake .. -DCMAKE_BUIDL_TYPE=... -DENABLE_TESTS=..
+cmake .. -DCMAKE_BUILD_TYPE=... -DENABLE_TESTS=..
 make
 ```
 
