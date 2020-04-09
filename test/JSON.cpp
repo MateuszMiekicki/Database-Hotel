@@ -1,7 +1,10 @@
-#include <filesystem>
+#include <string_view>
+#include <fstream>
+#include <optional>
 #include "gtest/include/gtest/gtest.h"
-#include "../header/database/JSON.hpp"
 #include "Utility/FileManagement.hpp"
+#include "../lib/nlohmannjson/json.hpp"
+#include "../header/database/JSON.hpp"
 
 TEST(JSON, successConnect)
 {
@@ -72,8 +75,8 @@ TEST(JSON, emptyFileWithDBContent)
 TEST(JSON, findInDBFile)
 {
     FileManagement file;
-    file.creteFile("test.json", 
-                    "{\"test1\": [\"name\",10,true,\"poland\"],\"test2\": [\"name\",10,true,\"poland\"],\"test3\": [\"name\",10,true,\"poland\"],\"test4\": [\"name\",10,true,\"poland\"]}");
+    file.creteFile("test.json",
+                   "{\"test1\": [\"name\",10,true,\"poland\"],\"test2\": [\"name\",10,true,\"poland\"],\"test3\": [\"name\",10,true,\"poland\"],\"test4\": [\"name\",10,true,\"poland\"]}");
     Database::JSON json("test.json");
     json.getDataWithDB();
     auto returnValue = json.find("test2");

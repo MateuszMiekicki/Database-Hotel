@@ -1,6 +1,6 @@
-#include <fstream>
 #include <string_view>
-#include <stdexcept>
+#include <fstream>
+#include <utility>
 #include <optional>
 #include <filesystem>
 #include "../../lib/nlohmannjson/json.hpp"
@@ -34,6 +34,11 @@ bool Database::JSON::connect(std::string_view addres) noexcept
         return false;
     }
     return true;
+}
+
+bool Database::JSON::sync(std::filesystem::path pathTo) noexcept
+{
+    return false;
 }
 
 std::optional<nlohmann::json> Database::JSON::getDataWithDB() noexcept
