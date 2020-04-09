@@ -14,8 +14,8 @@ class JSON : public Database
 public:
     JSON() = default;
     explicit JSON(std::string_view);
-    virtual bool connect(std::string_view) noexcept override;
-    virtual bool disconnect() noexcept override;
+    bool connect(std::string_view) noexcept override;
+    bool disconnect() noexcept override;
     bool addNewGuest() const noexcept;
     std::optional<nlohmann::json> getDataWithDB() noexcept;
     std::optional<nlohmann::json> find(const std::string &) const noexcept;
