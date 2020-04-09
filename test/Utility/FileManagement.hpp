@@ -25,6 +25,6 @@ public:
     ~FileManagement();
 
 private:
-    std::pair<std::filesystem::path, std::string> pathForCretefile;
+    std::vector<std::pair<std::filesystem::path, std::string>> pathForCretefile;
 };
 #endif

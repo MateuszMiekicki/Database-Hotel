@@ -27,8 +27,7 @@ bool FileManagement::creteFile(std::string fileNameWithExtension,
     {
         return false;
     }
-    pathForCretefile.first = path;
-    pathForCretefile.second = fileNameWithExtension;
+    pathForCretefile.emplace_back(path, fileNameWithExtension);
     return true;
 }
 
@@ -59,8 +58,7 @@ bool FileManagement::creteFile(std::string fileNameWithExtension,
     {
         return false;
     }
-    pathForCretefile.first = path;
-    pathForCretefile.second = fileNameWithExtension;
+    pathForCretefile.emplace_back(path, fileNameWithExtension);
     return true;
 }
 bool FileManagement::isFileExist(std::string fileNameWithExtension,
@@ -88,5 +86,6 @@ bool FileManagement::deleteFile(std::string fileNameWithExtension,
 
 FileManagement::~FileManagement()
 {
-    deleteFile(pathForCretefile.second, pathForCretefile.first);
+    for (const auto &file : pathForCretefile)
+        deleteFile(file.second, file.first);
 }
