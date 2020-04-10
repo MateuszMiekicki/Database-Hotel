@@ -1,10 +1,10 @@
 #include <string_view>
 #include <fstream>
 #include <optional>
-#include "gtest/include/gtest/gtest.h"
-#include "Utility/FileManagement.hpp"
-#include "../lib/nlohmannjson/json.hpp"
-#include "../header/database/JSON.hpp"
+#include "../../gtest/include/gtest/gtest.h"
+#include "../../Utility/FileManagement.hpp"
+#include "../../../lib/nlohmannjson/json.hpp"
+#include "../../../header/database/JSON/JSON.hpp"
 
 TEST(JSON, successConnect)
 {

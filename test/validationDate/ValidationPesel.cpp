@@ -1,5 +1,5 @@
-#include "gtest/include/gtest/gtest.h"
-#include "../header/validationDate/ValidationPesel.hpp"
+#include "../gtest/include/gtest/gtest.h"
+#include "../../header/validationDate/ValidationPesel.hpp"
 
 Validation::ValidationPesel pesel;
 

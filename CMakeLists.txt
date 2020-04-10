@@ -44,8 +44,8 @@ add_library(staff STATIC
 
 add_library(database STATIC
     header/database/Database.hpp
-    src/database/JSON.cpp
-    header/database/JSON.hpp
+    src/database/JSON/JSON.cpp
+    header/database/JSON/JSON.hpp
     ${nlohmannJson}
 )
 

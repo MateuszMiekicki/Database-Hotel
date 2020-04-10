@@ -1,5 +1,5 @@
-#include "gtest/include/gtest/gtest.h"
-#include "../header/validationDate/ValidationPassword.hpp"
+#include "../gtest/include/gtest/gtest.h"
+#include "../../header/validationDate/ValidationPassword.hpp"
 
 Validation::ValidationPassword password;
 

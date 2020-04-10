@@ -1,6 +1,6 @@
 #ifndef JSON_hpp
 #define JSON_hpp
-#include "Database.hpp"
+#include "../Database.hpp"
 
 namespace Database
 {

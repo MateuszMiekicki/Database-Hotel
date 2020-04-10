@@ -1,5 +1,5 @@
-#include "gtest/include/gtest/gtest.h"
-#include "../header/validationDate/ValidationEmail.hpp"
+#include "../gtest/include/gtest/gtest.h"
+#include "../../header/validationDate/ValidationEmail.hpp"
 
 Validation::ValidationEmail email;
 
