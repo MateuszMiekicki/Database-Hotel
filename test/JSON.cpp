@@ -76,7 +76,10 @@ TEST(JSON, findInDBFile)
 {
     FileManagement file;
     file.creteFile("test.json",
-                   "{\"test1\": [\"name\",10,true,\"poland\"],\"test2\": [\"name\",10,true,\"poland\"],\"test3\": [\"name\",10,true,\"poland\"],\"test4\": [\"name\",10,true,\"poland\"]}");
+                   "{\"test1\": [\"name\",10,true,\"poland\"],"
+                   "\"test2\": [\"name\",10,true,\"poland\"],"
+                   "\"test3\": [\"name\",10,true,\"poland\"],"
+                   "\"test4\": [\"name\",10,true,\"poland\"]}");
     Database::JSON json("test.json");
     json.getDataWithDB();
     auto returnValue = json.find("test2");

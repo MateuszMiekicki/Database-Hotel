@@ -38,6 +38,7 @@ bool Database::JSON::connect(std::string_view addres) noexcept
 
 bool Database::JSON::sync(std::filesystem::path pathTo) noexcept
 {
+    
     return false;
 }
 
@@ -65,7 +66,7 @@ bool Database::JSON::disconnect() noexcept
 }
 
 std::optional<nlohmann::json> Database::JSON::find(const std::string &key) const
-    noexcept
+                                                                           noexcept
 {
     if (session.second.find(key) != session.second.end())
     {
