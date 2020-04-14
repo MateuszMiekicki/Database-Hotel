@@ -6,14 +6,6 @@
 #include "../../../lib/nlohmannjson/json.hpp"
 #include "../../../header/database/JSON/JSON.hpp"
 
-TEST(JSON, successConnect)
-{
-    FileManagement file;
-    file.creteFile("test.json");
-    Database::JSON json;
-    ASSERT_TRUE(json.connect("test.json"));
-}
-
 TEST(JSON, successConnectWithConstructor)
 {
     FileManagement file;
@@ -21,14 +13,48 @@ TEST(JSON, successConnectWithConstructor)
     ASSERT_NO_THROW(Database::JSON json("test.json"));
 }
 
-TEST(JSON, wrongConnectWithConstructor)
+TEST(JSON, failedConnectionDueToMissingFileConstructor)
 {
     try
     {
-        Database::JSON json("test.json");
+        Database::JSON json("thisFileDoesExist.json");
     }
     catch (const std::invalid_argument &e)
     {
-        EXPECT_EQ(e.what(), std::string("JSON ctor: Bad addres database."));
+        EXPECT_EQ(e.what(),
+                  std::string("Database::JSON::connect(std::string_view):"
+                              " The file does not exist."));
+    }
+}
+
+TEST(JSON, failedConnectionDueToMissingFile)
+{
+    try
+    {
+        Database::JSON json;
+        json.connect("thisFileDoesExist.json");
+    }
+    catch (const std::invalid_argument &e)
+    {
+        EXPECT_EQ(e.what(),
+                  std::string("Database::JSON::connect(std::string_view):"
+                              " The file does not exist."));
+    }
+}
+
+TEST(JSON, theFileExistsButItHasBadExtension)
+{
+    try
+    {
+        FileManagement file;
+        file.creteFile("fileWithRheWrongExtension.txt");
+        Database::JSON json;
+        json.connect("fileWithRheWrongExtension.txt");
+    }
+    catch (const std::invalid_argument &e)
+    {
+        EXPECT_EQ(e.what(),
+                  std::string("Database::JSON::connect(std::string_view):"
+                              " Wrong file extension."));
     }
 }

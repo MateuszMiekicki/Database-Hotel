@@ -8,7 +8,7 @@ class JSON
 public:
     JSON() = default;
     explicit JSON(std::string_view);
-    bool connect(std::string_view) noexcept;
+    void connect(std::string_view);
     std::optional<nlohmann::json> getDataWithDB() noexcept;
     bool sync(std::filesystem::path) noexcept;
     std::optional<nlohmann::json> find(const std::string &) const noexcept;

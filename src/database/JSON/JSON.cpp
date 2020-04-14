@@ -8,36 +8,30 @@
 
 Database::JSON::JSON(std::string_view addres)
 {
-    if (connect(addres) == false)
-        throw std::invalid_argument("JSON ctor: Bad addres database.");
+    connect(addres);
 }
 
-bool Database::JSON::connect(std::string_view addres) noexcept
+void Database::JSON::connect(std::string_view addres)
 {
-    try
+    if (!std::filesystem::exists(addres))
     {
-        if (std::filesystem::exists(addres))
-        {
-            session.first.open(std::string(addres),
-                               std::fstream::in |
-                                   std::fstream::out |
-                                   std::fstream::app);
-        }
-        else
-        {
-            return false;
-        }
+        throw std::invalid_argument("Database::JSON::connect(std::string_view):"
+                                    " The file does not exist.");
     }
-    catch (...)
+    if (std::filesystem::path(addres).extension() != ".json")
     {
-        return false;
+        throw std::invalid_argument("Database::JSON::connect(std::string_view):"
+                                    " Wrong file extension.");
     }
-    return true;
+    session.first.open(std::string(addres),
+                       std::fstream::in |
+                           std::fstream::out |
+                           std::fstream::app);
 }
 
 bool Database::JSON::sync(std::filesystem::path pathTo) noexcept
 {
-    
+
     return false;
 }
 
@@ -64,8 +58,7 @@ bool Database::JSON::disconnect() noexcept
                : false;
 }
 
-std::optional<nlohmann::json> Database::JSON::find(const std::string &key) const
-                                                                           noexcept
+std::optional<nlohmann::json> Database::JSON::find(const std::string &key) const noexcept
 {
     if (session.second.find(key) != session.second.end())
     {
