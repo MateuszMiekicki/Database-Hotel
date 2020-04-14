@@ -7,6 +7,7 @@ include(ExternalProject)
 set(EXTERNAL_INSTALL_LOCATION ${CMAKE_SOURCE_DIR}/test/gtest)
 ExternalProject_Add(googleTest
     GIT_REPOSITORY https://github.com/google/googleTest
+    GIT_TAG "v1.10.x"
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
 )
 include_directories(${EXTERNAL_INSTALL_LOCATION}/include)   
