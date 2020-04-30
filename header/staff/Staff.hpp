@@ -11,7 +11,7 @@ public:
     explicit Staff(std::string_view, 
                     std::string_view, 
                     std::string_view) noexcept;
-    void set(std::string_view, std::string_view, std::string_view) noexcept;
+    void set(std::string_view, std::string_view, std::string_view);
     std::optional<std::tuple<std::string, 
                             std::string, 
                             std::string>> get() const noexcept;

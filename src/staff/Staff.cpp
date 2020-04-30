@@ -1,6 +1,7 @@
 #include <string_view>
 #include <optional>
 #include <tuple>
+#include <stdexcept>
 #include "../../header/staff/Staff.hpp"
 #include "../../header/staff/Permissions.hpp"
 #include "../../header/validationDate/ValidationEmail.hpp"
@@ -24,19 +25,25 @@ std::optional<std::tuple<std::string,
 
 void Staff::Staff::set(std::string_view name, 
                         std::string_view secondName, 
-                        std::string_view peselOrPersonalID) noexcept
+                        std::string_view peselOrPersonalID)
 {
-    Validation::ValidationIDCard validationIDCard;
-    Validation::ValidationPesel validationPesel;
-    if ((name.size() != 0) && 
-        (secondName.size() != 0) && 
-        (validationIDCard.validated(peselOrPersonalID) || 
-        validationPesel.validated(peselOrPersonalID)))
-        {
-            worker = std::make_tuple(name, secondName, peselOrPersonalID);
-        }
-    else
+    if (name.size() == 0)
     {
-        worker = std::nullopt;
+        throw std::invalid_argument("Setting up staff data: "
+                                    "the name must not be empty.");
     }
+    if(secondName.size() == 0)
+    {
+        throw std::invalid_argument("Setting up staff data: "
+                                    "the second name must not be empty.");
+    }
+    Validation::ValidationPesel validationPesel;
+    Validation::ValidationIDCard validationIDCard;
+    if((validationPesel.validated(peselOrPersonalID) == false) && 
+        (validationIDCard.validated(peselOrPersonalID) == false))
+    {
+        throw std::invalid_argument("Setting up staff data: "
+                                    "the wrong identification number (pesel or id) is given.");
+    }
+    worker = std::make_tuple(name, secondName, peselOrPersonalID);
 }
