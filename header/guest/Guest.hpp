@@ -9,8 +9,8 @@ public:
     Guest() = default;
     explicit Guest(std::string_view, 
                     std::string_view, 
-                    std::string_view) noexcept;
-    void set(std::string_view, std::string_view, std::string_view) noexcept;
+                    std::string_view);
+    void set(std::string_view, std::string_view, std::string_view);
     std::optional<std::tuple<std::string_view,
                              std::string_view,
                              std::string_view>> get() const noexcept;
