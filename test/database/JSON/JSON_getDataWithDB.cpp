@@ -29,10 +29,9 @@ TEST(JSON, getDataWithDBSimpleTwoObject)
 
 TEST(JSON, emptyFileWithDBContent)
 {
+
     FileManagement file;
     file.creteFile("test.json", "");
     Database::JSON json("test.json");
-    nlohmann::json temp;
-    temp = {{"one", 1}, {"two", 2}};
     EXPECT_EQ(json.getDataWithDB(), std::nullopt);
 }

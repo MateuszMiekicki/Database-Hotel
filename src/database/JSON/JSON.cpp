@@ -3,6 +3,8 @@
 #include <utility>
 #include <optional>
 #include <filesystem>
+#include <iostream>
+#include <exception>
 #include "../../../lib/nlohmannjson/json.hpp"
 #include "../../../header/database/JSON/JSON.hpp"
 
@@ -31,7 +33,7 @@ void Database::JSON::connect(std::string_view addres)
 
 bool Database::JSON::sync(std::filesystem::path pathTo) noexcept
 {
-
+    
     return false;
 }
 
@@ -41,8 +43,19 @@ std::optional<nlohmann::json> Database::JSON::getDataWithDB() noexcept
     {
         session.first >> session.second;
     }
+    catch (const std::ios_base::failure &ex)
+    {
+        std::cerr << ex.what();
+        return std::nullopt;
+    }
+    catch (const nlohmann::detail::parse_error &ex)
+    {
+        std::cerr << ex.what();
+        return std::nullopt;
+    }
     catch (...)
     {
+        std::cerr << "Unknown exception.";
         return std::nullopt;
     }
     return session.second;
