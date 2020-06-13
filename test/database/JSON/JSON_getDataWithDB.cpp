@@ -29,7 +29,6 @@ TEST(JSON, getDataWithDBSimpleTwoObject)
 
 TEST(JSON, emptyFileWithDBContent)
 {
-
     FileManagement file;
     file.creteFile("test.json", "");
     Database::JSON json("test.json");
