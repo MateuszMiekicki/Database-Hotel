@@ -53,7 +53,8 @@ set(STAFF staff/Staff.cpp)
 set(DATABASE database/JSON/JSON_connect.cpp
              database/JSON/JSON_disconnect.cpp
              database/JSON/JSON_find.cpp
-             database/JSON/JSON_getDataWithDB.cpp)
+             database/JSON/JSON_getDataWithDB.cpp
+             database/JSON/JSON_operatorEqualTo)
 
 add_executable(UnitTests ${UTILITY_FOR_UNIT_TEST} ${MAIN_FILE} ${VALIDATE_DATE} ${GUEST} ${STAFF} ${DATABASE})
 add_dependencies(UnitTests googleTest)

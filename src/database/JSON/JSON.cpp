@@ -33,7 +33,6 @@ void Database::JSON::connect(std::string_view addres)
 
 bool Database::JSON::sync(std::filesystem::path pathTo) noexcept
 {
-    
     return false;
 }
 
@@ -83,4 +82,9 @@ std::optional<nlohmann::json> Database::JSON::find(const std::string &key) const
 Database::JSON::~JSON()
 {
     disconnect();
+}
+
+bool Database::JSON::operator==(const JSON &objectToCompare)
+{
+    return (this->session.second == objectToCompare.session.second);
 }

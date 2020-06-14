@@ -14,7 +14,7 @@ public:
     std::optional<nlohmann::json> find(const std::string &) const noexcept;
     bool disconnect() noexcept;
     ~JSON();
-
+    bool operator==(const JSON& objectToCompare);
 private:
     std::pair<std::fstream, nlohmann::json> session;
 };
