@@ -3,21 +3,22 @@
 
 namespace Database
 {
-class JSON
-{
-public:
-    JSON() = default;
-    explicit JSON(std::string_view);
-    void connect(std::string_view);
-    std::optional<nlohmann::json> getDataWithDB() noexcept;
-    bool sync(std::filesystem::path) noexcept;
-    std::optional<nlohmann::json> find(const std::string &) const noexcept;
-    bool disconnect() noexcept;
-    ~JSON();
-    bool operator==(const JSON& objectToCompare);
-private:
-    std::pair<std::fstream, nlohmann::json> session;
-};
+    class JSON
+    {
+    public:
+        JSON() = default;
+        explicit JSON(std::string_view);
+        void connect(std::string_view);
+        std::optional<nlohmann::json> getDataWithDB() noexcept;
+        bool sync(std::filesystem::path) noexcept;
+        std::optional<nlohmann::json> find(const std::string &) const noexcept;
+        bool disconnect() noexcept;
+        ~JSON();
+        bool operator==(const JSON &objectToCompare);
+
+    private:
+        std::pair<std::fstream, nlohmann::json> session;
+    };
 } // namespace Database
 
 #endif

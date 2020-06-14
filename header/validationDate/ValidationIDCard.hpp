@@ -4,11 +4,11 @@
 
 namespace Validation
 {
-class ValidationIDCard : public Validation::Validation
-{
+    class ValidationIDCard : public Validation::Validation
+    {
     public:
-    bool validated(std::string_view) const noexcept override;
-};
+        bool validated(std::string_view) const noexcept override;
+    };
 } // namespace Validation
 
 #endif

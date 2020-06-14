@@ -9,37 +9,38 @@
 #include "../../header/validationDate/ValidationPassword.hpp"
 #include "../../header/validationDate/ValidationPesel.hpp"
 
-Staff::Staff::Staff(std::string_view name, 
-                    std::string_view secondName, 
+Staff::Staff::Staff(std::string_view name,
+                    std::string_view secondName,
                     std::string_view peselOrPersonalID) noexcept
 {
     set(name, secondName, peselOrPersonalID);
 }
 
-std::optional<std::tuple<std::string, 
-                        std::string, 
-                        std::string>> Staff::Staff::get() const noexcept
+std::optional<std::tuple<std::string,
+                         std::string,
+                         std::string>>
+Staff::Staff::get() const noexcept
 {
     return worker;
 }
 
-void Staff::Staff::set(std::string_view name, 
-                        std::string_view secondName, 
-                        std::string_view peselOrPersonalID)
+void Staff::Staff::set(std::string_view name,
+                       std::string_view secondName,
+                       std::string_view peselOrPersonalID)
 {
     if (name.size() == 0)
     {
         throw std::invalid_argument("Setting up staff data: "
                                     "the name must not be empty.");
     }
-    if(secondName.size() == 0)
+    if (secondName.size() == 0)
     {
         throw std::invalid_argument("Setting up staff data: "
                                     "the second name must not be empty.");
     }
     Validation::ValidationPesel validationPesel;
     Validation::ValidationIDCard validationIDCard;
-    if((validationPesel.validated(peselOrPersonalID) == false) && 
+    if ((validationPesel.validated(peselOrPersonalID) == false) &&
         (validationIDCard.validated(peselOrPersonalID) == false))
     {
         throw std::invalid_argument("Setting up staff data: "

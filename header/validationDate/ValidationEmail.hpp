@@ -4,11 +4,11 @@
 
 namespace Validation
 {
-class ValidationEmail : public Validation::Validation
-{
+    class ValidationEmail : public Validation::Validation
+    {
     public:
-    bool validated(std::string_view) const noexcept override;
-};
+        bool validated(std::string_view) const noexcept override;
+    };
 } // namespace Validation
 
 #endif
