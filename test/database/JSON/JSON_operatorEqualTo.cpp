@@ -8,9 +8,9 @@
 
 TEST(JSON, equalEmptyFiles)
 {
-    FileManagement file;
-    file.creteFile("test.json", "{}");
-    file.creteFile("testTwo.json", "{}");
+    Utility::FileManagement file;
+    file.createFile("test.json", "{}");
+    file.createFile("testTwo.json", "{}");
     Database::JSON test("test.json");
     Database::JSON testTwo("testTwo.json");
     ASSERT_TRUE(test == testTwo);
@@ -18,9 +18,9 @@ TEST(JSON, equalEmptyFiles)
 
 TEST(JSON, equalSameContent)
 {
-    FileManagement file;
-    file.creteFile("test.json", "[{\"one\":1}, {\"two\": 2}]");
-    file.creteFile("testTwo.json", "[{\"one\":1}, {\"two\": 2}]");
+    Utility::FileManagement file;
+    file.createFile("test.json", "[{\"one\":1}, {\"two\": 2}]");
+    file.createFile("testTwo.json", "[{\"one\":1}, {\"two\": 2}]");
     Database::JSON test("test.json");
     Database::JSON testTwo("testTwo.json");
     ASSERT_TRUE(test == testTwo);
@@ -28,9 +28,9 @@ TEST(JSON, equalSameContent)
 
 TEST(JSON, equalSameContentButInDifferentOrder)
 {
-    FileManagement file;
-    file.creteFile("test.json", "[{\"one\":1}, {\"two\": 2}]");
-    file.creteFile("testTwo.json", "[{\"two\": 2}], {\"one\":1}");
+    Utility::FileManagement file;
+    file.createFile("test.json", "[{\"one\":1}, {\"two\": 2}]");
+    file.createFile("testTwo.json", "[{\"two\": 2}], {\"one\":1}");
     Database::JSON test("test.json");
     Database::JSON testTwo("testTwo.json");
     ASSERT_TRUE(test == testTwo);
@@ -38,9 +38,9 @@ TEST(JSON, equalSameContentButInDifferentOrder)
 
 TEST(JSON, dontEqualAnotherFileOneEmptyOtherNot)
 {
-    FileManagement file;
-    file.creteFile("test.json", "{}");
-    file.creteFile("testTwo.json", "[{\"one\":1}, {\"two\": 2}]");
+    Utility::FileManagement file;
+    file.createFile("test.json", "{}");
+    file.createFile("testTwo.json", "[{\"one\":1}, {\"two\": 2}]");
     Database::JSON test("test.json");
     test.getDataWithDB();
     Database::JSON testTwo("testTwo.json");
@@ -50,9 +50,9 @@ TEST(JSON, dontEqualAnotherFileOneEmptyOtherNot)
 
 TEST(JSON, dontEqualAnotherFileObjectAndArray)
 {
-    FileManagement file;
-    file.creteFile("test.json", "[]");
-    file.creteFile("testTwo.json", "{}");
+    Utility::FileManagement file;
+    file.createFile("test.json", "[]");
+    file.createFile("testTwo.json", "{}");
     Database::JSON test("test.json");
     test.getDataWithDB();
     Database::JSON testTwo("testTwo.json");

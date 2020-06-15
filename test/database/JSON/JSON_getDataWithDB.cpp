@@ -8,8 +8,8 @@
 
 TEST(JSON, getDataWithDBEmptyDB)
 {
-    FileManagement file;
-    file.creteFile("test.json", "{}");
+    Utility::FileManagement file;
+    file.createFile("test.json", "{}");
     Database::JSON json("test.json");
     nlohmann::json temp;
     temp = {{"one", 1}, {"two", 2}};
@@ -19,8 +19,8 @@ TEST(JSON, getDataWithDBEmptyDB)
 
 TEST(JSON, getDataWithDBSimpleTwoObject)
 {
-    FileManagement file;
-    file.creteFile("test.json", "{\"one\":1,\"two\":2}");
+    Utility::FileManagement file;
+    file.createFile("test.json", "{\"one\":1,\"two\":2}");
     Database::JSON json("test.json");
     nlohmann::json temp;
     temp = {{"one", 1}, {"two", 2}};
@@ -29,8 +29,8 @@ TEST(JSON, getDataWithDBSimpleTwoObject)
 
 TEST(JSON, emptyFileWithDBContent)
 {
-    FileManagement file;
-    file.creteFile("test.json", "");
+    Utility::FileManagement file;
+    file.createFile("test.json", "");
     Database::JSON json("test.json");
     EXPECT_EQ(json.getDataWithDB(), std::nullopt);
 }

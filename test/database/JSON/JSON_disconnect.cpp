@@ -8,8 +8,8 @@
 
 TEST(JSON, disconnect)
 {
-    FileManagement file;
-    file.creteFile("test.json", "{\"one\":1,\"two\":2}");
+    Utility::FileManagement file;
+    file.createFile("test.json", "{\"one\":1,\"two\":2}");
     Database::JSON json("test.json");
     ASSERT_TRUE(json.disconnect());
 }

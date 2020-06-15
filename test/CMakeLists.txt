@@ -41,8 +41,7 @@ set_target_properties(database PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES ${PROJECT_SOURCE_DIR}/../header/
 )
 
-set(UTILITY_FOR_UNIT_TEST Utility/FileManagement.cpp 
-                          Utility/FileManagement.hpp)
+set(UTILITY_FOR_UNIT_TEST Utility/FileManagement.hpp)
 set(MAIN_FILE main.cpp)
 set(VALIDATE_DATE validationDate/ValidationPesel.cpp 
                   validationDate/ValidationEmail.cpp 

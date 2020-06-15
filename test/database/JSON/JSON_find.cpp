@@ -8,8 +8,8 @@
 
 TEST(JSON, findInDBFile)
 {
-    FileManagement file;
-    file.creteFile("test.json",
+    Utility::FileManagement file;
+    file.createFile("test.json",
                    "{\"test1\": [\"name\",10,true,\"poland\"],"
                    "\"test2\": [\"name\",10,true,\"poland\"],"
                    "\"test3\": [\"name\",10,true,\"poland\"],"

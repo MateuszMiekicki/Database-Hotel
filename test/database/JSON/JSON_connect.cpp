@@ -8,8 +8,8 @@
 
 TEST(JSON, successConnectWithConstructor)
 {
-    FileManagement file;
-    file.creteFile("test.json");
+    Utility::FileManagement file;
+    file.createFile("test.json");
     ASSERT_NO_THROW(Database::JSON json("test.json"));
 }
 
@@ -46,8 +46,8 @@ TEST(JSON, theFileExistsButItHasBadExtension)
 {
     try
     {
-        FileManagement file;
-        file.creteFile("fileWithRheWrongExtension.txt");
+        Utility::FileManagement file;
+        file.createFile("fileWithRheWrongExtension.txt");
         Database::JSON json;
         json.connect("fileWithRheWrongExtension.txt");
     }
