@@ -9,12 +9,13 @@ namespace Database
         JSON() = default;
         explicit JSON(std::string_view);
         void connect(std::string_view);
-        std::optional<nlohmann::json> getDataWithDB() noexcept;
-        bool sync(std::filesystem::path) noexcept;
+        nlohmann::json getDataWithDB() const noexcept;
         std::optional<nlohmann::json> find(const std::string &) const noexcept;
         bool disconnect() noexcept;
         ~JSON();
-        bool operator==(const JSON &objectToCompare);
+        bool operator==(const JSON &objectToCompare) const noexcept;
+        bool operator==(const nlohmann::json &objectToCompare) const
+                                                               noexcept;
 
     private:
         std::pair<std::fstream, nlohmann::json> session;

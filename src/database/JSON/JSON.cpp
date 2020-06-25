@@ -29,34 +29,11 @@ void Database::JSON::connect(std::string_view addres)
                        std::fstream::in |
                            std::fstream::out |
                            std::fstream::app);
+    session.first >> session.second;
 }
 
-bool Database::JSON::sync(std::filesystem::path pathTo) noexcept
+nlohmann::json Database::JSON::getDataWithDB() const noexcept
 {
-    return false;
-}
-
-std::optional<nlohmann::json> Database::JSON::getDataWithDB() noexcept
-{
-    try
-    {
-        session.first >> session.second;
-    }
-    catch (const std::ios_base::failure &ex)
-    {
-        std::cerr << ex.what();
-        return std::nullopt;
-    }
-    catch (const nlohmann::detail::parse_error &ex)
-    {
-        std::cerr << ex.what();
-        return std::nullopt;
-    }
-    catch (...)
-    {
-        std::cerr << "Unknown exception.";
-        return std::nullopt;
-    }
     return session.second;
 }
 
@@ -70,7 +47,8 @@ bool Database::JSON::disconnect() noexcept
                : false;
 }
 
-std::optional<nlohmann::json> Database::JSON::find(const std::string &key) const noexcept
+std::optional<nlohmann::json> Database::JSON::find(const std::string &key) const
+                                                                           noexcept
 {
     if (session.second.find(key) != session.second.end())
     {
@@ -84,7 +62,13 @@ Database::JSON::~JSON()
     disconnect();
 }
 
-bool Database::JSON::operator==(const JSON &objectToCompare)
+bool Database::JSON::operator==(const JSON &objectToCompare) const noexcept
 {
     return (this->session.second == objectToCompare.session.second);
+}
+
+bool Database::JSON::operator==(const nlohmann::json &objectToCompare) const
+                                                                       noexcept
+{
+    return (this->session.second == objectToCompare);
 }

@@ -6,31 +6,11 @@
 #include "../../../lib/nlohmannjson/json.hpp"
 #include "../../../header/database/JSON/JSON.hpp"
 
-TEST(JSON, getDataWithDBEmptyDB)
+TEST(JSON, successGetDataWithDB)
 {
     Utility::FileManagement file;
-    file.createFile("test.json", "{}");
+    file.createFile("test.json", "{\"one\": 1, \"two\": 2}");
     Database::JSON json("test.json");
-    nlohmann::json temp;
-    temp = {{"one", 1}, {"two", 2}};
-    temp.clear();
+    nlohmann::json temp = nlohmann::json::parse("{\"one\": 1, \"two\": 2}");
     EXPECT_EQ(json.getDataWithDB(), temp);
-}
-
-TEST(JSON, getDataWithDBSimpleTwoObject)
-{
-    Utility::FileManagement file;
-    file.createFile("test.json", "{\"one\":1,\"two\":2}");
-    Database::JSON json("test.json");
-    nlohmann::json temp;
-    temp = {{"one", 1}, {"two", 2}};
-    EXPECT_EQ(json.getDataWithDB(), temp);
-}
-
-TEST(JSON, emptyFileWithDBContent)
-{
-    Utility::FileManagement file;
-    file.createFile("test.json", "");
-    Database::JSON json("test.json");
-    EXPECT_EQ(json.getDataWithDB(), std::nullopt);
 }

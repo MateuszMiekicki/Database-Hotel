@@ -33,7 +33,7 @@ TEST(JSON, equalSameContentButInDifferentOrder)
     file.createFile("testTwo.json", "[{\"two\": 2}], {\"one\":1}");
     Database::JSON test("test.json");
     Database::JSON testTwo("testTwo.json");
-    ASSERT_TRUE(test == testTwo);
+    ASSERT_FALSE(test == testTwo);
 }
 
 TEST(JSON, dontEqualAnotherFileOneEmptyOtherNot)
@@ -58,4 +58,34 @@ TEST(JSON, dontEqualAnotherFileObjectAndArray)
     Database::JSON testTwo("testTwo.json");
     testTwo.getDataWithDB();
     ASSERT_FALSE(test == testTwo);
+}
+
+TEST(JSON, dontEqualAnotherJSONObjectAndArray)
+{
+    Utility::FileManagement file;
+    file.createFile("test.json", "[]");
+    Database::JSON test("test.json");
+    test.getDataWithDB();
+    nlohmann::json testTwo = nlohmann::json::parse("{}");
+    ASSERT_FALSE(test == testTwo);
+}
+
+TEST(JSON, dontEqualAnotherJSONOneEmptyOtherNot)
+{
+    Utility::FileManagement file;
+    file.createFile("test.json", "{}");
+    file.createFile("testTwo.json", "[{\"one\":1}, {\"two\": 2}]");
+    Database::JSON test("test.json");
+    test.getDataWithDB();
+    nlohmann::json testTwo = nlohmann::json::parse("[{\"one\":1}, {\"two\": 2}]");
+    ASSERT_FALSE(test == testTwo);
+}
+
+TEST(JSON, equalSameContentButInDifferentOrderInJSONObject)
+{
+    Utility::FileManagement file;
+    file.createFile("test.json", "{\"one\":1, \"two\": 2}");
+    Database::JSON test("test.json");
+    nlohmann::json testTwo = nlohmann::json::parse("{\"two\": 2, \"one\":1}");
+    ASSERT_TRUE(test == testTwo);
 }

@@ -9,8 +9,8 @@
 TEST(JSON, successConnectWithConstructor)
 {
     Utility::FileManagement file;
-    file.createFile("test.json");
-    ASSERT_NO_THROW(Database::JSON json("test.json"));
+    file.createFile("test.json", "{ }");
+    ASSERT_NO_THROW(Database::JSON("test.json"));
 }
 
 TEST(JSON, failedConnectionDueToMissingFileConstructor)
@@ -27,22 +27,7 @@ TEST(JSON, failedConnectionDueToMissingFileConstructor)
     }
 }
 
-TEST(JSON, failedConnectionDueToMissingFile)
-{
-    try
-    {
-        Database::JSON json;
-        json.connect("thisFileDoesExist.json");
-    }
-    catch (const std::invalid_argument &e)
-    {
-        EXPECT_EQ(e.what(),
-                  std::string("Database::JSON::connect(std::string_view):"
-                              " The file does not exist."));
-    }
-}
-
-TEST(JSON, theFileExistsButItHasBadExtension)
+TEST(JSON, fileExistsButItHasBadExtension)
 {
     try
     {
@@ -57,4 +42,21 @@ TEST(JSON, theFileExistsButItHasBadExtension)
                   std::string("Database::JSON::connect(std::string_view):"
                               " Wrong file extension."));
     }
+}
+
+TEST(JSON, downloadDataWithEmptyDBFile)
+{
+    Utility::FileManagement file;
+    file.createFile("test.json");
+    EXPECT_THROW(Database::JSON("test.json"), nlohmann::json::parse_error);
+}
+
+TEST(JSON, getDataWithDBSimpleTwoObject)
+{
+    Utility::FileManagement file;
+    file.createFile("test.json", "{\"one\":1,\"two\":2}");
+    Database::JSON json("test.json");
+    nlohmann::json temp;
+    temp = {{"one", 1}, {"two", 2}};
+    EXPECT_EQ(json.getDataWithDB(), temp);
 }
