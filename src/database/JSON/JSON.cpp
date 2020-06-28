@@ -37,6 +37,11 @@ nlohmann::json Database::JSON::getDataWithDB() const noexcept
     return session.second;
 }
 
+void Database::JSON::sync(std::filesystem::path path)
+{
+    session.second.update(nlohmann::json::parse(std::fstream(path)));
+}
+
 bool Database::JSON::disconnect() noexcept
 {
     session.first.close();
